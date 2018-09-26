@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.14"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Trabalho 2: Simulador Assembly Mips</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Trabalho 2
+   &#160;<span id="projectnumber">2.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.8.14 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Localizar');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Simulador Assembly Mips </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p><b>Os arquivos estão organizados da seguinte forma:</b></p>
+<ul>
+<li>docs -&gt; Contém os arquivos de documentação gerados pelo doxygen (Latex e Html) e os relatórios individuais de cada membro do grupo</li>
+<li>include-&gt; Contém os arquivos de cabeçalho do código como (.h)</li>
+<li>obj-&gt; Contém os objetos e arquivos gcov gerados pelo makefile</li>
+<li>src-&gt; Contém as funções dos arquivos de cabeçalho, a main e o makefile</li>
+<li>lib-&gt; Contém os arquivos binários para rodar o programa <hr/>
+</li>
+</ul>
+<p><b>Ambiente e Execução</b></p>
+<p><b>Requirements:</b> </p><pre class="fragment">Ubuntu version: 18:04
+gcc version: 7.3.0
+make version: 4.1
+</pre><ul>
+<li>Caso necessário, instale os pacotes utilizando "sudo apt-get install make""</li>
+</ul>
+<p><b>Para compilar e executar: Acesse o diretório "src"</b></p>
+<ul>
+<li>Para compilar digite "make" e o projeto será compilado.</li>
+<li>Para executar (somente se projeto já tiver sido compilado) digite "make project" e o arquivo "Project" será gerado na estrutura principal.</li>
+<li>Para compilar e executar automaticamente digite "make all" no terminal e o arquivo "Project" será gerado na estrutura principal do projeto e executado automaticamente</li>
+</ul>
+<p><b>Comandos makefile:</b> </p><pre class="fragment">make         -  Compila o Projeto
+make project     -  Executa o projeto
+make clean   -  Apaga arquivos objeto, binários, gcov e outros
+make all     -  Compila, executa e gera Arquivos Gcov
+</pre><hr/>
+<p><b>Observações:</b></p>
+<ul>
+<li>Na main, é possível alterar a variável DEBUG para true, ou para false, para debugar o código, mostrando informações úteis.</li>
+<li>Na main, também é possível alterar o diretório em que o programa deve procurar os arquivos binários "text.bin e data.bin". Por padrão, o programa procura dentro da pasta lib. Ex:</li>
+<li>strcpy(DIR, "teste") - procura arquivos text.bin e data.bin no diretório /lib/teste</li>
+<li>strcpy(DIR, "primos") - procura arquivos text.bin e data.bin no diretório /lib/primos </li>
+</ul>
+</div></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.14
+</small></address>
+</body>
+</html>

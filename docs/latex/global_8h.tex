@@ -1,0 +1,815 @@
+\section{Referência ao ficheiro memory/include/global.h}
+\label{global_8h}\index{memory/include/global.\+h@{memory/include/global.\+h}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+\subsection*{Componentes}
+\begin{DoxyCompactItemize}
+\item 
+struct \textbf{ uint5\+\_\+t}
+\begin{DoxyCompactList}\small\item\em Struct que define o tipo \doxyref{uint5\+\_\+t}{p. }{structuint5__t}. \end{DoxyCompactList}\item 
+struct \textbf{ uint6\+\_\+t}
+\begin{DoxyCompactList}\small\item\em Struct que define o tipo \doxyref{uint6\+\_\+t}{p. }{structuint6__t}. \end{DoxyCompactList}\item 
+struct \textbf{ int26\+\_\+t}
+\begin{DoxyCompactList}\small\item\em Struct que define o tipo uint26\+\_\+t. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \textbf{ M\+E\+M\+\_\+\+S\+I\+ZE}~4096
+\end{DoxyCompactItemize}
+\subsection*{Definições de tipos}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \textbf{ uint5\+\_\+t} \textbf{ uint5\+\_\+t}
+\begin{DoxyCompactList}\small\item\em Struct que define o tipo \doxyref{uint5\+\_\+t}{p. }{structuint5__t}. \end{DoxyCompactList}\item 
+typedef struct \textbf{ uint6\+\_\+t} \textbf{ uint6\+\_\+t}
+\begin{DoxyCompactList}\small\item\em Struct que define o tipo \doxyref{uint6\+\_\+t}{p. }{structuint6__t}. \end{DoxyCompactList}\item 
+typedef struct \textbf{ int26\+\_\+t} \textbf{ int26\+\_\+t}
+\begin{DoxyCompactList}\small\item\em Struct que define o tipo uint26\+\_\+t. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerações}
+\begin{DoxyCompactItemize}
+\item 
+enum \textbf{ O\+P\+C\+O\+D\+ES} \{ \newline
+\textbf{ E\+XT} = 0x00, 
+\textbf{ J} = 0x02, 
+\textbf{ J\+AL} = 0x03, 
+\textbf{ B\+EQ} = 0x04, 
+\newline
+\textbf{ B\+NE} = 0x05, 
+\textbf{ B\+L\+EZ} = 0x06, 
+\textbf{ B\+G\+TZ} = 0x07, 
+\textbf{ A\+D\+DI} = 0x08, 
+\newline
+\textbf{ A\+D\+D\+IU} = 0x09, 
+\textbf{ S\+L\+TI} = 0x0A, 
+\textbf{ S\+L\+T\+IU} = 0x0B, 
+\textbf{ A\+N\+DI} = 0x0C, 
+\newline
+\textbf{ O\+RI} = 0x0D, 
+\textbf{ X\+O\+RI} = 0x0E, 
+\textbf{ L\+UI} = 0x0F, 
+\textbf{ LB} = 0x20, 
+\newline
+\textbf{ LH} = 0x21, 
+\textbf{ LW} = 0x23, 
+\textbf{ L\+BU} = 0x24, 
+\textbf{ L\+HU} = 0x25, 
+\newline
+\textbf{ SB} = 0x28, 
+\textbf{ SH} = 0x29, 
+\textbf{ SW} = 0x2B
+ \}
+\begin{DoxyCompactList}\small\item\em Opcodes assembly M\+I\+PS, e suas respectivas instruções. \end{DoxyCompactList}\item 
+enum \textbf{ F\+U\+N\+CT} \{ \newline
+\textbf{ S\+LL} = 0x00, 
+\textbf{ S\+RL} = 0x02, 
+\textbf{ S\+RA} = 0x03, 
+\textbf{ JR} = 0x08, 
+\newline
+\textbf{ S\+Y\+S\+C\+A\+LL} = 0x0C, 
+\textbf{ M\+F\+HI} = 0x10, 
+\textbf{ M\+F\+LO} = 0x12, 
+\textbf{ M\+U\+LT} = 0x18, 
+\newline
+\textbf{ D\+IV} = 0x1A, 
+\textbf{ A\+DD} = 0x20, 
+\textbf{ A\+D\+DU} = 0x21, 
+\textbf{ S\+UB} = 0x22, 
+\newline
+\textbf{ A\+ND} = 0x24, 
+\textbf{ OR} = 0x25, 
+\textbf{ X\+OR} = 0x26, 
+\textbf{ N\+OR} = 0x27, 
+\newline
+\textbf{ S\+LT} = 0x2A, 
+\textbf{ S\+L\+TU} = 0x2B
+ \}
+\begin{DoxyCompactList}\small\item\em Funct do assembly M\+I\+PS, e suas respectivas instruções. \end{DoxyCompactList}\item 
+enum \textbf{ bool} \{ \textbf{ false}, 
+\textbf{ true}
+ \}
+\begin{DoxyCompactList}\small\item\em Enum que define o tipo bool. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Funções}
+\begin{DoxyCompactItemize}
+\item 
+void \textbf{ debug} (void)
+\begin{DoxyCompactList}\small\item\em Função que chama as funções de depuração. \end{DoxyCompactList}\item 
+void \textbf{ debug\+\_\+opcode} (int)
+\begin{DoxyCompactList}\small\item\em Função que mostra informações uteis das instruções de opcode. \end{DoxyCompactList}\item 
+void \textbf{ debug\+\_\+funct} (int)
+\begin{DoxyCompactList}\small\item\em Função que mostra informações úteis de funct. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variáveis}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ uint5\+\_\+t} \textbf{ rs}
+\begin{DoxyCompactList}\small\item\em Variáveis globais. \end{DoxyCompactList}\item 
+\textbf{ uint5\+\_\+t} \textbf{ rt}
+\item 
+\textbf{ uint5\+\_\+t} \textbf{ rd}
+\item 
+\textbf{ uint5\+\_\+t} \textbf{ shamt}
+\item 
+\textbf{ uint6\+\_\+t} \textbf{ op}
+\item 
+\textbf{ uint6\+\_\+t} \textbf{ funct}
+\item 
+int32\+\_\+t \textbf{ k16}
+\item 
+\textbf{ int26\+\_\+t} \textbf{ k26}
+\item 
+uint32\+\_\+t \textbf{ pc}
+\item 
+uint32\+\_\+t \textbf{ ri}
+\item 
+uint32\+\_\+t \textbf{ hi}
+\item 
+uint32\+\_\+t \textbf{ lo}
+\item 
+uint32\+\_\+t \textbf{ epc}
+\item 
+int32\+\_\+t \textbf{ mem} [\textbf{ M\+E\+M\+\_\+\+S\+I\+ZE}]
+\item 
+int32\+\_\+t \textbf{ reg} [32]
+\item 
+\textbf{ bool} \textbf{ D\+E\+B\+UG}
+\item 
+int \textbf{ counter}
+\item 
+char \textbf{ D\+IR} [100]
+\end{DoxyCompactItemize}
+
+
+\subsection{Documentação das macros}
+\mbox{\label{global_8h_a2dcf8c45f945dd0c4301a94700f2112c}} 
+\index{global.\+h@{global.\+h}!M\+E\+M\+\_\+\+S\+I\+ZE@{M\+E\+M\+\_\+\+S\+I\+ZE}}
+\index{M\+E\+M\+\_\+\+S\+I\+ZE@{M\+E\+M\+\_\+\+S\+I\+ZE}!global.\+h@{global.\+h}}
+\subsubsection{M\+E\+M\+\_\+\+S\+I\+ZE}
+{\footnotesize\ttfamily \#define M\+E\+M\+\_\+\+S\+I\+ZE~4096}
+
+
+
+\subsection{Documentação dos tipos}
+\mbox{\label{global_8h_a3656297e91b0a02a54fcfd2716273940}} 
+\index{global.\+h@{global.\+h}!int26\+\_\+t@{int26\+\_\+t}}
+\index{int26\+\_\+t@{int26\+\_\+t}!global.\+h@{global.\+h}}
+\subsubsection{int26\+\_\+t}
+{\footnotesize\ttfamily typedef struct \textbf{ int26\+\_\+t}  \textbf{ int26\+\_\+t}}
+
+
+
+Struct que define o tipo uint26\+\_\+t. 
+
+O tipo uint26\+\_\+t é definido como um tipo que contém uma variável unsigned int value de 26 bits \mbox{\label{global_8h_aa91ae97368c5e8a607b58af8edb3de32}} 
+\index{global.\+h@{global.\+h}!uint5\+\_\+t@{uint5\+\_\+t}}
+\index{uint5\+\_\+t@{uint5\+\_\+t}!global.\+h@{global.\+h}}
+\subsubsection{uint5\+\_\+t}
+{\footnotesize\ttfamily typedef struct \textbf{ uint5\+\_\+t}  \textbf{ uint5\+\_\+t}}
+
+
+
+Struct que define o tipo \doxyref{uint5\+\_\+t}{p. }{structuint5__t}. 
+
+O tipo \doxyref{uint5\+\_\+t}{p. }{structuint5__t} é definido como um tipo que contém uma variável unsigned int value de 5 bits \mbox{\label{global_8h_aec15be096388542523f4cb443debe56a}} 
+\index{global.\+h@{global.\+h}!uint6\+\_\+t@{uint6\+\_\+t}}
+\index{uint6\+\_\+t@{uint6\+\_\+t}!global.\+h@{global.\+h}}
+\subsubsection{uint6\+\_\+t}
+{\footnotesize\ttfamily typedef struct \textbf{ uint6\+\_\+t}  \textbf{ uint6\+\_\+t}}
+
+
+
+Struct que define o tipo \doxyref{uint6\+\_\+t}{p. }{structuint6__t}. 
+
+O tipo \doxyref{uint6\+\_\+t}{p. }{structuint6__t} é definido como um tipo que contém uma variável unsigned int value de 6 bits 
+
+\subsection{Documentação dos valores da enumeração}
+\mbox{\label{global_8h_af6a258d8f3ee5206d682d799316314b1}} 
+\index{global.\+h@{global.\+h}!bool@{bool}}
+\index{bool@{bool}!global.\+h@{global.\+h}}
+\subsubsection{bool}
+{\footnotesize\ttfamily enum \textbf{ bool}}
+
+
+
+Enum que define o tipo bool. 
+
+Como o tipo bool não existe em C99, houve a necessidade de criar um enum que representasse esse tipo \begin{DoxyEnumFields}{Valores de enumerações}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{false@{false}!global.\+h@{global.\+h}}\index{global.\+h@{global.\+h}!false@{false}}}\mbox{\label{global_8h_af6a258d8f3ee5206d682d799316314b1ae9de385ef6fe9bf3360d1038396b884c}} 
+false&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{true@{true}!global.\+h@{global.\+h}}\index{global.\+h@{global.\+h}!true@{true}}}\mbox{\label{global_8h_af6a258d8f3ee5206d682d799316314b1a08f175a5505a10b9ed657defeb050e4b}} 
+true&\\
+\hline
+
+\end{DoxyEnumFields}
+
+\begin{DoxyCode}
+98 \{
+99     \textcolor{keyword}{false},
+100     \textcolor{keyword}{true}
+101 \} bool;
+\end{DoxyCode}
+\mbox{\label{global_8h_afc2af664d8c6b484cd076252cf6cc1fd}} 
+\index{global.\+h@{global.\+h}!F\+U\+N\+CT@{F\+U\+N\+CT}}
+\index{F\+U\+N\+CT@{F\+U\+N\+CT}!global.\+h@{global.\+h}}
+\subsubsection{F\+U\+N\+CT}
+{\footnotesize\ttfamily enum \textbf{ F\+U\+N\+CT}}
+
+
+
+Funct do assembly M\+I\+PS, e suas respectivas instruções. 
+
+Cada Funct descrito neste enum, representa uma instrução no assembly M\+I\+PS \begin{DoxyEnumFields}{Valores de enumerações}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S\+LL@{S\+LL}!global.\+h@{global.\+h}}\index{global.\+h@{global.\+h}!S\+LL@{S\+LL}}}\mbox{\label{global_8h_afc2af664d8c6b484cd076252cf6cc1fdac5497b80cebf0d58c6fb5896d8a16e81}} 
+S\+LL&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S\+RL@{S\+RL}!global.\+h@{global.\+h}}\index{global.\+h@{global.\+h}!S\+RL@{S\+RL}}}\mbox{\label{global_8h_afc2af664d8c6b484cd076252cf6cc1fdad54966cc8630eae4fdbc112e34e57c52}} 
+S\+RL&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S\+RA@{S\+RA}!global.\+h@{global.\+h}}\index{global.\+h@{global.\+h}!S\+RA@{S\+RA}}}\mbox{\label{global_8h_afc2af664d8c6b484cd076252cf6cc1fda59fcbef6ae00f2b7c9cd9f22877678a9}} 
+S\+RA&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{JR@{JR}!global.\+h@{global.\+h}}\index{global.\+h@{global.\+h}!JR@{JR}}}\mbox{\label{global_8h_afc2af664d8c6b484cd076252cf6cc1fda401a611ef98f4ca40ddee7e11d62f978}} 
+JR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S\+Y\+S\+C\+A\+LL@{S\+Y\+S\+C\+A\+LL}!global.\+h@{global.\+h}}\index{global.\+h@{global.\+h}!S\+Y\+S\+C\+A\+LL@{S\+Y\+S\+C\+A\+LL}}}\mbox{\label{global_8h_afc2af664d8c6b484cd076252cf6cc1fda1d03a6692faba15e73ac4acb885315e1}} 
+S\+Y\+S\+C\+A\+LL&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{M\+F\+HI@{M\+F\+HI}!global.\+h@{global.\+h}}\index{global.\+h@{global.\+h}!M\+F\+HI@{M\+F\+HI}}}\mbox{\label{global_8h_afc2af664d8c6b484cd076252cf6cc1fda91af968ca2681d2c4b684841669fb26b}} 
+M\+F\+HI&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{M\+F\+LO@{M\+F\+LO}!global.\+h@{global.\+h}}\index{global.\+h@{global.\+h}!M\+F\+LO@{M\+F\+LO}}}\mbox{\label{global_8h_afc2af664d8c6b484cd076252cf6cc1fdae248bf97eb534d90a4a6c9090d9e88e1}} 
+M\+F\+LO&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{M\+U\+LT@{M\+U\+LT}!global.\+h@{global.\+h}}\index{global.\+h@{global.\+h}!M\+U\+LT@{M\+U\+LT}}}\mbox{\label{global_8h_afc2af664d8c6b484cd076252cf6cc1fda18a2956fb463e60c1a099d6d69e2c0ef}} 
+M\+U\+LT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{D\+IV@{D\+IV}!global.\+h@{global.\+h}}\index{global.\+h@{global.\+h}!D\+IV@{D\+IV}}}\mbox{\label{global_8h_afc2af664d8c6b484cd076252cf6cc1fda8565f0d60c3ba6d468661c49d86e9744}} 
+D\+IV&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{A\+DD@{A\+DD}!global.\+h@{global.\+h}}\index{global.\+h@{global.\+h}!A\+DD@{A\+DD}}}\mbox{\label{global_8h_afc2af664d8c6b484cd076252cf6cc1fdacfcf145f2788bf340ff3f3098bc54909}} 
+A\+DD&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{A\+D\+DU@{A\+D\+DU}!global.\+h@{global.\+h}}\index{global.\+h@{global.\+h}!A\+D\+DU@{A\+D\+DU}}}\mbox{\label{global_8h_afc2af664d8c6b484cd076252cf6cc1fda86c46ca8ae3b048499463db63b494861}} 
+A\+D\+DU&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S\+UB@{S\+UB}!global.\+h@{global.\+h}}\index{global.\+h@{global.\+h}!S\+UB@{S\+UB}}}\mbox{\label{global_8h_afc2af664d8c6b484cd076252cf6cc1fda12b733d4941495e86811fe6ceeeff9da}} 
+S\+UB&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{A\+ND@{A\+ND}!global.\+h@{global.\+h}}\index{global.\+h@{global.\+h}!A\+ND@{A\+ND}}}\mbox{\label{global_8h_afc2af664d8c6b484cd076252cf6cc1fda865555c9f2e0458a7078486aa1b3254f}} 
+A\+ND&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OR@{OR}!global.\+h@{global.\+h}}\index{global.\+h@{global.\+h}!OR@{OR}}}\mbox{\label{global_8h_afc2af664d8c6b484cd076252cf6cc1fda96727447c0ad447987df1c6415aef074}} 
+OR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{X\+OR@{X\+OR}!global.\+h@{global.\+h}}\index{global.\+h@{global.\+h}!X\+OR@{X\+OR}}}\mbox{\label{global_8h_afc2af664d8c6b484cd076252cf6cc1fdac62338ffb5de22369c75caa565b5da1a}} 
+X\+OR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{N\+OR@{N\+OR}!global.\+h@{global.\+h}}\index{global.\+h@{global.\+h}!N\+OR@{N\+OR}}}\mbox{\label{global_8h_afc2af664d8c6b484cd076252cf6cc1fdae11143b557a102e979014e3ae824172f}} 
+N\+OR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S\+LT@{S\+LT}!global.\+h@{global.\+h}}\index{global.\+h@{global.\+h}!S\+LT@{S\+LT}}}\mbox{\label{global_8h_afc2af664d8c6b484cd076252cf6cc1fdafcb9fddfa2b50746b441b94c476c6332}} 
+S\+LT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S\+L\+TU@{S\+L\+TU}!global.\+h@{global.\+h}}\index{global.\+h@{global.\+h}!S\+L\+TU@{S\+L\+TU}}}\mbox{\label{global_8h_afc2af664d8c6b484cd076252cf6cc1fda460979647d3d464fb4a178b0f472c24a}} 
+S\+L\+TU&\\
+\hline
+
+\end{DoxyEnumFields}
+
+\begin{DoxyCode}
+45 \{
+46     SLL = 0x00,
+47     SRL = 0x02,
+48     SRA = 0x03,
+49     JR = 0x08,
+50     SYSCALL = 0x0C,
+51     MFHI = 0x10,
+52     MFLO = 0x12,
+53     MULT = 0x18,
+54     DIV = 0x1A,
+55     ADD = 0x20,
+56     ADDU = 0x21,
+57     SUB = 0x22,
+58     AND = 0x24,
+59     OR = 0x25,
+60     XOR = 0x26,
+61     NOR = 0x27,
+62     SLT = 0x2A,
+63     SLTU = 0x2B,
+64 \};
+\end{DoxyCode}
+\mbox{\label{global_8h_a43695c6fa5f17092f94ec826d4ffb83e}} 
+\index{global.\+h@{global.\+h}!O\+P\+C\+O\+D\+ES@{O\+P\+C\+O\+D\+ES}}
+\index{O\+P\+C\+O\+D\+ES@{O\+P\+C\+O\+D\+ES}!global.\+h@{global.\+h}}
+\subsubsection{O\+P\+C\+O\+D\+ES}
+{\footnotesize\ttfamily enum \textbf{ O\+P\+C\+O\+D\+ES}}
+
+
+
+Opcodes assembly M\+I\+PS, e suas respectivas instruções. 
+
+Cada Opcode descrito neste enum, representa uma instrução no assembly M\+I\+PS \begin{DoxyEnumFields}{Valores de enumerações}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\+XT@{E\+XT}!global.\+h@{global.\+h}}\index{global.\+h@{global.\+h}!E\+XT@{E\+XT}}}\mbox{\label{global_8h_a43695c6fa5f17092f94ec826d4ffb83ea43943b97a80411494fa56399e53f17c2}} 
+E\+XT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{J@{J}!global.\+h@{global.\+h}}\index{global.\+h@{global.\+h}!J@{J}}}\mbox{\label{global_8h_a43695c6fa5f17092f94ec826d4ffb83ea03605500b0c55f3d95874e8edfcf4e30}} 
+J&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{J\+AL@{J\+AL}!global.\+h@{global.\+h}}\index{global.\+h@{global.\+h}!J\+AL@{J\+AL}}}\mbox{\label{global_8h_a43695c6fa5f17092f94ec826d4ffb83ea233cb6709087f6c0642372ef5dd78a3a}} 
+J\+AL&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{B\+EQ@{B\+EQ}!global.\+h@{global.\+h}}\index{global.\+h@{global.\+h}!B\+EQ@{B\+EQ}}}\mbox{\label{global_8h_a43695c6fa5f17092f94ec826d4ffb83ea10a57057de688acb1267e6e84e82c612}} 
+B\+EQ&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{B\+NE@{B\+NE}!global.\+h@{global.\+h}}\index{global.\+h@{global.\+h}!B\+NE@{B\+NE}}}\mbox{\label{global_8h_a43695c6fa5f17092f94ec826d4ffb83ea47b77783113a840ba70ba77ffca11bcd}} 
+B\+NE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{B\+L\+EZ@{B\+L\+EZ}!global.\+h@{global.\+h}}\index{global.\+h@{global.\+h}!B\+L\+EZ@{B\+L\+EZ}}}\mbox{\label{global_8h_a43695c6fa5f17092f94ec826d4ffb83ea30bdc2c618dd4293e9508a6a6dc697f2}} 
+B\+L\+EZ&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{B\+G\+TZ@{B\+G\+TZ}!global.\+h@{global.\+h}}\index{global.\+h@{global.\+h}!B\+G\+TZ@{B\+G\+TZ}}}\mbox{\label{global_8h_a43695c6fa5f17092f94ec826d4ffb83ea796e994d9ee44f0b9d43d7b01a298114}} 
+B\+G\+TZ&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{A\+D\+DI@{A\+D\+DI}!global.\+h@{global.\+h}}\index{global.\+h@{global.\+h}!A\+D\+DI@{A\+D\+DI}}}\mbox{\label{global_8h_a43695c6fa5f17092f94ec826d4ffb83ea6e87b0a8efa92e9deea49ff2921b45a8}} 
+A\+D\+DI&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{A\+D\+D\+IU@{A\+D\+D\+IU}!global.\+h@{global.\+h}}\index{global.\+h@{global.\+h}!A\+D\+D\+IU@{A\+D\+D\+IU}}}\mbox{\label{global_8h_a43695c6fa5f17092f94ec826d4ffb83eabea21437c43e8d7514f811b46df3fbf6}} 
+A\+D\+D\+IU&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S\+L\+TI@{S\+L\+TI}!global.\+h@{global.\+h}}\index{global.\+h@{global.\+h}!S\+L\+TI@{S\+L\+TI}}}\mbox{\label{global_8h_a43695c6fa5f17092f94ec826d4ffb83ead3e10f290b0e57e4c711af4ff7974bf8}} 
+S\+L\+TI&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S\+L\+T\+IU@{S\+L\+T\+IU}!global.\+h@{global.\+h}}\index{global.\+h@{global.\+h}!S\+L\+T\+IU@{S\+L\+T\+IU}}}\mbox{\label{global_8h_a43695c6fa5f17092f94ec826d4ffb83ea6f3b05d2a173a249f6855c63b0aebff0}} 
+S\+L\+T\+IU&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{A\+N\+DI@{A\+N\+DI}!global.\+h@{global.\+h}}\index{global.\+h@{global.\+h}!A\+N\+DI@{A\+N\+DI}}}\mbox{\label{global_8h_a43695c6fa5f17092f94ec826d4ffb83ea06dc2369420445e6e3a51e7cec426352}} 
+A\+N\+DI&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{O\+RI@{O\+RI}!global.\+h@{global.\+h}}\index{global.\+h@{global.\+h}!O\+RI@{O\+RI}}}\mbox{\label{global_8h_a43695c6fa5f17092f94ec826d4ffb83eacdb39f8c8d5518820b97eef455eb240b}} 
+O\+RI&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{X\+O\+RI@{X\+O\+RI}!global.\+h@{global.\+h}}\index{global.\+h@{global.\+h}!X\+O\+RI@{X\+O\+RI}}}\mbox{\label{global_8h_a43695c6fa5f17092f94ec826d4ffb83ea432042c51792646ca29ab2bfbe712ed2}} 
+X\+O\+RI&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{L\+UI@{L\+UI}!global.\+h@{global.\+h}}\index{global.\+h@{global.\+h}!L\+UI@{L\+UI}}}\mbox{\label{global_8h_a43695c6fa5f17092f94ec826d4ffb83ea924a1e6cec1796dee2ef3e3fd80f056c}} 
+L\+UI&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LB@{LB}!global.\+h@{global.\+h}}\index{global.\+h@{global.\+h}!LB@{LB}}}\mbox{\label{global_8h_a43695c6fa5f17092f94ec826d4ffb83eaec61e49978c3f59c943a3c0dc00ce94c}} 
+LB&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LH@{LH}!global.\+h@{global.\+h}}\index{global.\+h@{global.\+h}!LH@{LH}}}\mbox{\label{global_8h_a43695c6fa5f17092f94ec826d4ffb83eaadab8e0111f669b137544a4ecce92997}} 
+LH&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LW@{LW}!global.\+h@{global.\+h}}\index{global.\+h@{global.\+h}!LW@{LW}}}\mbox{\label{global_8h_a43695c6fa5f17092f94ec826d4ffb83eafb8dc6a60882be011a142162e88ddf4d}} 
+LW&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{L\+BU@{L\+BU}!global.\+h@{global.\+h}}\index{global.\+h@{global.\+h}!L\+BU@{L\+BU}}}\mbox{\label{global_8h_a43695c6fa5f17092f94ec826d4ffb83eaa5977e1c7e10f67525f6b5ad7034546d}} 
+L\+BU&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{L\+HU@{L\+HU}!global.\+h@{global.\+h}}\index{global.\+h@{global.\+h}!L\+HU@{L\+HU}}}\mbox{\label{global_8h_a43695c6fa5f17092f94ec826d4ffb83eaee5904f3f96379562d46d974c3f9c80a}} 
+L\+HU&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SB@{SB}!global.\+h@{global.\+h}}\index{global.\+h@{global.\+h}!SB@{SB}}}\mbox{\label{global_8h_a43695c6fa5f17092f94ec826d4ffb83ead3000f705564090d2acd1d320ccc5135}} 
+SB&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SH@{SH}!global.\+h@{global.\+h}}\index{global.\+h@{global.\+h}!SH@{SH}}}\mbox{\label{global_8h_a43695c6fa5f17092f94ec826d4ffb83ea34e6a4455b0bead95a23e814f7c06bfd}} 
+SH&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SW@{SW}!global.\+h@{global.\+h}}\index{global.\+h@{global.\+h}!SW@{SW}}}\mbox{\label{global_8h_a43695c6fa5f17092f94ec826d4ffb83ea247b880fc48dc1c74961ba58ae0f68a2}} 
+SW&\\
+\hline
+
+\end{DoxyEnumFields}
+
+\begin{DoxyCode}
+14 \{
+15     EXT = 0x00,
+16     J = 0x02,
+17     JAL = 0x03,
+18     BEQ = 0x04,
+19     BNE = 0x05,
+20     BLEZ = 0x06,
+21     BGTZ = 0x07,
+22     ADDI = 0x08,
+23     ADDIU = 0x09,
+24     SLTI = 0x0A,
+25     SLTIU = 0x0B,
+26     ANDI = 0x0C,
+27     ORI = 0x0D,
+28     XORI = 0x0E,
+29     LUI = 0x0F,
+30     LB = 0x20,
+31     LH = 0x21,
+32     LW = 0x23,
+33     LBU = 0x24,
+34     LHU = 0x25,
+35     SB = 0x28,
+36     SH = 0x29,
+37     SW = 0x2B,
+38 \};
+\end{DoxyCode}
+
+
+\subsection{Documentação das funções}
+\mbox{\label{global_8h_a146ba59440b7ebfb099f2ceb23d0a60f}} 
+\index{global.\+h@{global.\+h}!debug@{debug}}
+\index{debug@{debug}!global.\+h@{global.\+h}}
+\subsubsection{debug()}
+{\footnotesize\ttfamily void debug (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Função que chama as funções de depuração. 
+
+Se op for 0x00, mostra o conteúdo de funct, caso contrário, mostra o conteúdo de op. 
+\begin{DoxyCode}
+8 \{
+9     \textcolor{keywordflow}{if} (DEBUG)
+10     \{
+11         \textcolor{keywordflow}{if} (op.value == EXT)
+12             debug_funct(funct.value);
+13         \textcolor{keywordflow}{else}
+14             debug_opcode(op.value);
+15 
+16         getchar();
+17     \}
+18 \}
+\end{DoxyCode}
+\mbox{\label{global_8h_abf505128dc5815c1fcf0dc52dbc76ce0}} 
+\index{global.\+h@{global.\+h}!debug\+\_\+funct@{debug\+\_\+funct}}
+\index{debug\+\_\+funct@{debug\+\_\+funct}!global.\+h@{global.\+h}}
+\subsubsection{debug\+\_\+funct()}
+{\footnotesize\ttfamily void debug\+\_\+funct (\begin{DoxyParamCaption}\item[{int}]{ }\end{DoxyParamCaption})}
+
+
+
+Função que mostra informações úteis de funct. 
+
+
+\begin{DoxyCode}
+119 \{
+120     \textcolor{keywordflow}{switch} (instruction)
+121     \{
+122     \textcolor{keywordflow}{case} SLL:
+123         printf(\textcolor{stringliteral}{"sll \(\backslash\)t\(\backslash\)t [rd] = \(\backslash\)t d [%d] \(\backslash\)t\(\backslash\)t h [%08x]"}, rd.value, rd.value);
+124         \textcolor{keywordflow}{break};
+125 
+126     \textcolor{keywordflow}{case} SRL:
+127         printf(\textcolor{stringliteral}{"srl \(\backslash\)t\(\backslash\)t [rd] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]"}, rd.value, rd.value);
+128         \textcolor{keywordflow}{break};
+129 
+130     \textcolor{keywordflow}{case} SRA:
+131         printf(\textcolor{stringliteral}{"sra \(\backslash\)t\(\backslash\)t reg[%d] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]"}, rd.value, reg[rd.
+      value], reg[rd.value]);
+132         \textcolor{keywordflow}{break};
+133 
+134     \textcolor{keywordflow}{case} JR:
+135         printf(\textcolor{stringliteral}{"sra \(\backslash\)t\(\backslash\)t [pc] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]"}, pc, pc);
+136         \textcolor{keywordflow}{break};
+137 
+138     \textcolor{keywordflow}{case} SYSCALL:
+139         printf(\textcolor{stringliteral}{"syscall \(\backslash\)t reg[2] = \(\backslash\)t d [%d] \(\backslash\)t\(\backslash\)t h [%08x]"}, reg[2], reg[2]);
+140         \textcolor{keywordflow}{break};
+141 
+142     \textcolor{keywordflow}{case} MFHI:
+143         printf(\textcolor{stringliteral}{"mfhi \(\backslash\)t\(\backslash\)t reg[%d] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]"}, rd.value, reg[rd.
+      value], reg[rd.value]);
+144         \textcolor{keywordflow}{break};
+145 
+146     \textcolor{keywordflow}{case} MFLO:
+147         printf(\textcolor{stringliteral}{"mflo \(\backslash\)t\(\backslash\)t reg[%d] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]"}, rd.value, reg[rd.
+      value], reg[rd.value]);
+148         \textcolor{keywordflow}{break};
+149 
+150     \textcolor{keywordflow}{case} MULT:
+151         printf(\textcolor{stringliteral}{"mult \(\backslash\)t\(\backslash\)t [hi] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]\(\backslash\)n"}, hi, hi);
+152         printf(\textcolor{stringliteral}{"mult \(\backslash\)t\(\backslash\)t [lo] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]"}, lo, lo);
+153         \textcolor{keywordflow}{break};
+154 
+155     \textcolor{keywordflow}{case} DIV:
+156         printf(\textcolor{stringliteral}{"div \(\backslash\)t\(\backslash\)t [hi] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]\(\backslash\)n"}, hi, hi);
+157         printf(\textcolor{stringliteral}{"div \(\backslash\)t\(\backslash\)t [lo] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]"}, lo, lo);
+158         \textcolor{keywordflow}{break};
+159 
+160     \textcolor{keywordflow}{case} ADD:
+161         printf(\textcolor{stringliteral}{"add \(\backslash\)t\(\backslash\)t reg[%d] = \(\backslash\)t d [%d] \(\backslash\)t\(\backslash\)t h [%08x]"}, rd.value, reg[rd.
+      value], reg[rd.value]);
+162         \textcolor{keywordflow}{break};
+163 
+164     \textcolor{keywordflow}{case} ADDU:
+165         printf(\textcolor{stringliteral}{"addu \(\backslash\)t\(\backslash\)t reg[%d] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]"}, rd.value, reg[rd.
+      value], reg[rd.value]);
+166         \textcolor{keywordflow}{break};
+167 
+168     \textcolor{keywordflow}{case} SUB:
+169         printf(\textcolor{stringliteral}{"sub \(\backslash\)t\(\backslash\)t reg[%d] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]"}, rd.value, reg[rd.
+      value], reg[rd.value]);
+170         \textcolor{keywordflow}{break};
+171 
+172     \textcolor{keywordflow}{case} AND:
+173         printf(\textcolor{stringliteral}{"and \(\backslash\)t\(\backslash\)t reg[%d] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]"}, rd.value, reg[rd.
+      value], reg[rd.value]);
+174         \textcolor{keywordflow}{break};
+175 
+176     \textcolor{keywordflow}{case} OR:
+177         printf(\textcolor{stringliteral}{"or \(\backslash\)t\(\backslash\)t reg[%d] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]"}, rd.value, reg[rd.value], 
+      reg[rd.value]);
+178         \textcolor{keywordflow}{break};
+179 
+180     \textcolor{keywordflow}{case} XOR:
+181         printf(\textcolor{stringliteral}{"xor \(\backslash\)t\(\backslash\)t reg[%d] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]"}, rd.value, reg[rd.
+      value], reg[rd.value]);
+182         \textcolor{keywordflow}{break};
+183 
+184     \textcolor{keywordflow}{case} NOR:
+185         printf(\textcolor{stringliteral}{"nor \(\backslash\)t\(\backslash\)t reg[%d] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]"}, rd.value, reg[rd.
+      value], reg[rd.value]);
+186         \textcolor{keywordflow}{break};
+187 
+188     \textcolor{keywordflow}{case} SLT:
+189         printf(\textcolor{stringliteral}{"slt \(\backslash\)t\(\backslash\)t reg[%d] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]"}, rd.value, reg[rd.
+      value], reg[rd.value]);
+190         \textcolor{keywordflow}{break};
+191 
+192     \textcolor{keywordflow}{case} SLTU:
+193         printf(\textcolor{stringliteral}{"sltu \(\backslash\)t\(\backslash\)t reg[%d] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]"}, rd.value, reg[rd.
+      value], reg[rd.value]);
+194         \textcolor{keywordflow}{break};
+195     \}
+196 \}
+\end{DoxyCode}
+\mbox{\label{global_8h_a765c6fe6bff78083cd1fdccbcaa8cb48}} 
+\index{global.\+h@{global.\+h}!debug\+\_\+opcode@{debug\+\_\+opcode}}
+\index{debug\+\_\+opcode@{debug\+\_\+opcode}!global.\+h@{global.\+h}}
+\subsubsection{debug\+\_\+opcode()}
+{\footnotesize\ttfamily void debug\+\_\+opcode (\begin{DoxyParamCaption}\item[{int}]{ }\end{DoxyParamCaption})}
+
+
+
+Função que mostra informações uteis das instruções de opcode. 
+
+
+\begin{DoxyCode}
+23 \{
+24     \textcolor{keywordflow}{switch} (instruction)
+25     \{
+26     \textcolor{keywordflow}{case} J:
+27         printf(\textcolor{stringliteral}{"j \(\backslash\)t\(\backslash\)t [pc] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]"}, pc, pc);
+28         \textcolor{keywordflow}{break};
+29 
+30     \textcolor{keywordflow}{case} JAL:
+31         printf(\textcolor{stringliteral}{"jal \(\backslash\)t\(\backslash\)t [pc] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]"}, pc, pc);
+32         \textcolor{keywordflow}{break};
+33 
+34     \textcolor{keywordflow}{case} BEQ:
+35         printf(\textcolor{stringliteral}{"beq \(\backslash\)t\(\backslash\)t [pc] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]"}, pc, pc);
+36         \textcolor{keywordflow}{break};
+37 
+38     \textcolor{keywordflow}{case} BNE:
+39         printf(\textcolor{stringliteral}{"bne \(\backslash\)t\(\backslash\)t [pc] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]"}, pc, pc);
+40         \textcolor{keywordflow}{break};
+41 
+42     \textcolor{keywordflow}{case} BLEZ:
+43         printf(\textcolor{stringliteral}{"blez \(\backslash\)t\(\backslash\)t [pc] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]"}, pc, pc);
+44         \textcolor{keywordflow}{break};
+45 
+46     \textcolor{keywordflow}{case} BGTZ:
+47         printf(\textcolor{stringliteral}{"bgtz \(\backslash\)t\(\backslash\)t [pc] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]"}, pc, pc);
+48         \textcolor{keywordflow}{break};
+49 
+50     \textcolor{keywordflow}{case} ADDI:
+51         printf(\textcolor{stringliteral}{"addi \(\backslash\)t\(\backslash\)t reg[%d] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]"}, rt.value, reg[rt.
+      value], reg[rt.value]);
+52         \textcolor{keywordflow}{break};
+53 
+54     \textcolor{keywordflow}{case} ADDIU:
+55         printf(\textcolor{stringliteral}{"addiu \(\backslash\)t\(\backslash\)t reg[%d] = \(\backslash\)t d [%d] \(\backslash\)t\(\backslash\)t h [%08x]"}, rt.value, reg[rt.
+      value], reg[rt.value]);
+56         \textcolor{keywordflow}{break};
+57 
+58     \textcolor{keywordflow}{case} SLTI:
+59         printf(\textcolor{stringliteral}{"slti \(\backslash\)t\(\backslash\)t reg[%d] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]"}, rt.value, reg[rt.
+      value], reg[rt.value]);
+60         \textcolor{keywordflow}{break};
+61 
+62     \textcolor{keywordflow}{case} SLTIU:
+63         printf(\textcolor{stringliteral}{"sltiu \(\backslash\)t\(\backslash\)t reg[%d] = \(\backslash\)t d [%d] \(\backslash\)t\(\backslash\)t h [%08x]"}, rt.value, reg[rt.
+      value], reg[rt.value]);
+64         \textcolor{keywordflow}{break};
+65 
+66     \textcolor{keywordflow}{case} ANDI:
+67         printf(\textcolor{stringliteral}{"andi \(\backslash\)t\(\backslash\)t reg[%d] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]"}, rt.value, reg[rt.
+      value], reg[rt.value]);
+68         \textcolor{keywordflow}{break};
+69 
+70     \textcolor{keywordflow}{case} ORI:
+71         printf(\textcolor{stringliteral}{"ori \(\backslash\)t\(\backslash\)t reg[%d] = \(\backslash\)t d [%d] \(\backslash\)t\(\backslash\)t h [%08x]"}, rt.value, reg[rt.
+      value], reg[rt.value]);
+72         \textcolor{keywordflow}{break};
+73 
+74     \textcolor{keywordflow}{case} XORI:
+75         printf(\textcolor{stringliteral}{"xori \(\backslash\)t\(\backslash\)t reg[%d] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]"}, rt.value, reg[rt.
+      value], reg[rt.value]);
+76         \textcolor{keywordflow}{break};
+77 
+78     \textcolor{keywordflow}{case} LUI:
+79         printf(\textcolor{stringliteral}{"lui \(\backslash\)t\(\backslash\)t reg[%d] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]"}, rt.value, reg[rt.
+      value], reg[rt.value]);
+80         \textcolor{keywordflow}{break};
+81 
+82     \textcolor{keywordflow}{case} LB:
+83         printf(\textcolor{stringliteral}{"lb \(\backslash\)t\(\backslash\)t reg[%d] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]"}, rt.value, reg[rt.value], 
+      reg[rt.value]);
+84         \textcolor{keywordflow}{break};
+85 
+86     \textcolor{keywordflow}{case} LH:
+87         printf(\textcolor{stringliteral}{"lh \(\backslash\)t\(\backslash\)t reg[%d] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]"}, rt.value, reg[rt.value], 
+      reg[rt.value]);
+88         \textcolor{keywordflow}{break};
+89 
+90     \textcolor{keywordflow}{case} LW:
+91         printf(\textcolor{stringliteral}{"lw \(\backslash\)t\(\backslash\)t reg[%d] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]"}, rt.value, reg[rt.value], 
+      reg[rt.value]);
+92         \textcolor{keywordflow}{break};
+93 
+94     \textcolor{keywordflow}{case} LBU:
+95         printf(\textcolor{stringliteral}{"lbu \(\backslash\)t\(\backslash\)t reg[%d] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]"}, rt.value, reg[rt.
+      value], reg[rt.value]);
+96         \textcolor{keywordflow}{break};
+97 
+98     \textcolor{keywordflow}{case} LHU:
+99         printf(\textcolor{stringliteral}{"lhu \(\backslash\)t\(\backslash\)t reg[%d] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]"}, rt.value, reg[rt.
+      value], reg[rt.value]);
+100         \textcolor{keywordflow}{break};
+101 
+102     \textcolor{keywordflow}{case} SB:
+103         printf(\textcolor{stringliteral}{"sb \(\backslash\)t\(\backslash\)t reg[%d] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]"}, k16, reg[rt.value], 
+      reg[rt.value]);
+104         \textcolor{keywordflow}{break};
+105 
+106     \textcolor{keywordflow}{case} SH:
+107         printf(\textcolor{stringliteral}{"sh \(\backslash\)t\(\backslash\)t reg[%d] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]"}, rs.value, reg[rs.value], 
+      reg[rs.value]);
+108         \textcolor{keywordflow}{break};
+109 
+110     \textcolor{keywordflow}{case} SW:
+111         printf(\textcolor{stringliteral}{"sw \(\backslash\)t\(\backslash\)t reg[%d] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]"}, rs.value, reg[rs.value], 
+      reg[rs.value]);
+112         \textcolor{keywordflow}{break};
+113     \}
+114 \}
+\end{DoxyCode}
+
+
+\subsection{Documentação das variáveis}
+\mbox{\label{global_8h_a617a47c70795bcff659815ad0efd2266}} 
+\index{global.\+h@{global.\+h}!counter@{counter}}
+\index{counter@{counter}!global.\+h@{global.\+h}}
+\subsubsection{counter}
+{\footnotesize\ttfamily int counter}
+
+\mbox{\label{global_8h_a117352cc494cc62c6b2f1882786a332c}} 
+\index{global.\+h@{global.\+h}!D\+E\+B\+UG@{D\+E\+B\+UG}}
+\index{D\+E\+B\+UG@{D\+E\+B\+UG}!global.\+h@{global.\+h}}
+\subsubsection{D\+E\+B\+UG}
+{\footnotesize\ttfamily \textbf{ bool} D\+E\+B\+UG}
+
+\mbox{\label{global_8h_a4b4cdf740244b89103831afc9f1f8da4}} 
+\index{global.\+h@{global.\+h}!D\+IR@{D\+IR}}
+\index{D\+IR@{D\+IR}!global.\+h@{global.\+h}}
+\subsubsection{D\+IR}
+{\footnotesize\ttfamily char D\+IR[100]}
+
+\mbox{\label{global_8h_aa91f88b04106db21513d1fdb1d292560}} 
+\index{global.\+h@{global.\+h}!epc@{epc}}
+\index{epc@{epc}!global.\+h@{global.\+h}}
+\subsubsection{epc}
+{\footnotesize\ttfamily uint32\+\_\+t epc}
+
+\mbox{\label{global_8h_a7ff8b3b4e99ec79755cc0d08a504a555}} 
+\index{global.\+h@{global.\+h}!funct@{funct}}
+\index{funct@{funct}!global.\+h@{global.\+h}}
+\subsubsection{funct}
+{\footnotesize\ttfamily \textbf{ uint6\+\_\+t} funct}
+
+\mbox{\label{global_8h_aa824c8f5bb758efbe41747a4005e7456}} 
+\index{global.\+h@{global.\+h}!hi@{hi}}
+\index{hi@{hi}!global.\+h@{global.\+h}}
+\subsubsection{hi}
+{\footnotesize\ttfamily uint32\+\_\+t hi}
+
+\mbox{\label{global_8h_af8eec83b1e2577d4516ee2ec7b599f1e}} 
+\index{global.\+h@{global.\+h}!k16@{k16}}
+\index{k16@{k16}!global.\+h@{global.\+h}}
+\subsubsection{k16}
+{\footnotesize\ttfamily int32\+\_\+t k16}
+
+\mbox{\label{global_8h_a2fbff5e2dba7dc5e5ab1ee191a928ab5}} 
+\index{global.\+h@{global.\+h}!k26@{k26}}
+\index{k26@{k26}!global.\+h@{global.\+h}}
+\subsubsection{k26}
+{\footnotesize\ttfamily \textbf{ int26\+\_\+t} k26}
+
+\mbox{\label{global_8h_af696b3c873ee8212d81d86659e59bcc6}} 
+\index{global.\+h@{global.\+h}!lo@{lo}}
+\index{lo@{lo}!global.\+h@{global.\+h}}
+\subsubsection{lo}
+{\footnotesize\ttfamily uint32\+\_\+t lo}
+
+\mbox{\label{global_8h_a46efe40c077b2703eeef4917d597ab32}} 
+\index{global.\+h@{global.\+h}!mem@{mem}}
+\index{mem@{mem}!global.\+h@{global.\+h}}
+\subsubsection{mem}
+{\footnotesize\ttfamily int32\+\_\+t mem[\textbf{ M\+E\+M\+\_\+\+S\+I\+ZE}]}
+
+\mbox{\label{global_8h_a1e553227d3e9cdbdb35da7496af473b7}} 
+\index{global.\+h@{global.\+h}!op@{op}}
+\index{op@{op}!global.\+h@{global.\+h}}
+\subsubsection{op}
+{\footnotesize\ttfamily \textbf{ uint6\+\_\+t} op}
+
+\mbox{\label{global_8h_afaa20335217fae16f0e22b466017dae1}} 
+\index{global.\+h@{global.\+h}!pc@{pc}}
+\index{pc@{pc}!global.\+h@{global.\+h}}
+\subsubsection{pc}
+{\footnotesize\ttfamily uint32\+\_\+t pc}
+
+\mbox{\label{global_8h_aa3554ea0ce6e3bb6432cf30aa7ac82cb}} 
+\index{global.\+h@{global.\+h}!rd@{rd}}
+\index{rd@{rd}!global.\+h@{global.\+h}}
+\subsubsection{rd}
+{\footnotesize\ttfamily \textbf{ uint5\+\_\+t} rd}
+
+\mbox{\label{global_8h_aa7acf6bc53bca9273ad79e0a499463d1}} 
+\index{global.\+h@{global.\+h}!reg@{reg}}
+\index{reg@{reg}!global.\+h@{global.\+h}}
+\subsubsection{reg}
+{\footnotesize\ttfamily int32\+\_\+t reg[32]}
+
+\mbox{\label{global_8h_aa6cf03b82235bedc0acf00acb46130fb}} 
+\index{global.\+h@{global.\+h}!ri@{ri}}
+\index{ri@{ri}!global.\+h@{global.\+h}}
+\subsubsection{ri}
+{\footnotesize\ttfamily uint32\+\_\+t ri}
+
+\mbox{\label{global_8h_a4dc1c695a17f930a1d8d6e85bf10628b}} 
+\index{global.\+h@{global.\+h}!rs@{rs}}
+\index{rs@{rs}!global.\+h@{global.\+h}}
+\subsubsection{rs}
+{\footnotesize\ttfamily \textbf{ uint5\+\_\+t} rs}
+
+
+
+Variáveis globais. 
+
+Como são utilizadas muitas variáveis globais no projeto, houve a necessidade de criar um bloco de código que contesse todas as definições desses tipos de variáveis \mbox{\label{global_8h_a12e37c14661e63c1e0fbe35c8d92efea}} 
+\index{global.\+h@{global.\+h}!rt@{rt}}
+\index{rt@{rt}!global.\+h@{global.\+h}}
+\subsubsection{rt}
+{\footnotesize\ttfamily \textbf{ uint5\+\_\+t} rt}
+
+\mbox{\label{global_8h_a0bd6d3a4220a5ea92ef0211f7567accd}} 
+\index{global.\+h@{global.\+h}!shamt@{shamt}}
+\index{shamt@{shamt}!global.\+h@{global.\+h}}
+\subsubsection{shamt}
+{\footnotesize\ttfamily \textbf{ uint5\+\_\+t} shamt}
+

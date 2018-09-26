@@ -1,0 +1,53 @@
+{\bfseries Os arquivos estão organizados da seguinte forma\+:}
+
+
+\begin{DoxyItemize}
+\item docs -\/$>$ Contém os arquivos de documentação gerados pelo doxygen (Latex e Html) e os relatórios individuais de cada membro do grupo
+\item include-\/$>$ Contém os arquivos de cabeçalho do código como (.h)
+\item obj-\/$>$ Contém os objetos e arquivos gcov gerados pelo makefile
+\item src-\/$>$ Contém as funções dos arquivos de cabeçalho, a main e o makefile
+\item lib-\/$>$ Contém os arquivos binários para rodar o programa 
+
+
+\end{DoxyItemize}
+
+{\bfseries Ambiente e Execução}
+
+{\bfseries Requirements\+:} \begin{DoxyVerb}Ubuntu version: 18:04
+gcc version: 7.3.0
+make version: 4.1
+\end{DoxyVerb}
+
+\begin{DoxyItemize}
+\item Caso necessário, instale os pacotes utilizando \char`\"{}sudo apt-\/get install make\char`\"{}"
+\end{DoxyItemize}
+
+{\bfseries Para compilar e executar\+: Acesse o diretório \char`\"{}src\char`\"{}}
+
+
+\begin{DoxyItemize}
+\item Para compilar digite \char`\"{}make\char`\"{} e o projeto será compilado.
+\item Para executar (somente se projeto já tiver sido compilado) digite \char`\"{}make project\char`\"{} e o arquivo \char`\"{}\+Project\char`\"{} será gerado na estrutura principal.
+\item Para compilar e executar automaticamente digite \char`\"{}make all\char`\"{} no terminal e o arquivo \char`\"{}\+Project\char`\"{} será gerado na estrutura principal do projeto e executado automaticamente
+\end{DoxyItemize}
+
+{\bfseries Comandos makefile\+:} \begin{DoxyVerb}make         -  Compila o Projeto
+make project     -  Executa o projeto
+make clean   -  Apaga arquivos objeto, binários, gcov e outros
+make all     -  Compila, executa e gera Arquivos Gcov
+\end{DoxyVerb}
+
+
+
+
+
+
+{\bfseries Observações\+:}
+
+
+\begin{DoxyItemize}
+\item Na main, é possível alterar a variável D\+E\+B\+UG para true, ou para false, para debugar o código, mostrando informações úteis.
+\item Na main, também é possível alterar o diretório em que o programa deve procurar os arquivos binários \char`\"{}text.\+bin e data.\+bin\char`\"{}. Por padrão, o programa procura dentro da pasta lib. Ex\+:
+\item strcpy(D\+IR, \char`\"{}teste\char`\"{}) -\/ procura arquivos text.\+bin e data.\+bin no diretório /lib/teste
+\item strcpy(D\+IR, \char`\"{}primos\char`\"{}) -\/ procura arquivos text.\+bin e data.\+bin no diretório /lib/primos 
+\end{DoxyItemize}

@@ -1,0 +1,206 @@
+\section{Referência ao ficheiro memory/include/init.h}
+\label{init_8h}\index{memory/include/init.\+h@{memory/include/init.\+h}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}memory.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}global.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}recorder.\+h\char`\"{}}\newline
+\subsection*{Funções}
+\begin{DoxyCompactItemize}
+\item 
+void \textbf{ init} (void)
+\begin{DoxyCompactList}\small\item\em Inicialização. \end{DoxyCompactList}\item 
+void \textbf{ init\+\_\+variables} (void)
+\begin{DoxyCompactList}\small\item\em Inicializador de Variáveis. \end{DoxyCompactList}\item 
+void \textbf{ set\+\_\+values} (void)
+\item 
+void \textbf{ read\+\_\+data} (void)
+\begin{DoxyCompactList}\small\item\em Leitor de data.\+bin. \end{DoxyCompactList}\item 
+void \textbf{ read\+\_\+text} (void)
+\begin{DoxyCompactList}\small\item\em Leitor de text.\+bin. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Documentação das funções}
+\mbox{\label{init_8h_a2858154e2009b0e6e616f313177762bc}} 
+\index{init.\+h@{init.\+h}!init@{init}}
+\index{init@{init}!init.\+h@{init.\+h}}
+\subsubsection{init()}
+{\footnotesize\ttfamily void init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Inicialização. 
+
+Aqui são definidos os cabeçalhos de todas as funções de inicialização, tais como setar o valor inicial das variáveis, ler os arquivos text.\+bin e data.\+bin
+
+Inicialização.
+
+Chama todas as funções de inicialização, que inicializam variáveis e leem os arquivos text.\+bin e data.\+bin. Se D\+E\+B\+UG for true, ele mostra informações dos registradores e da memória 
+\begin{DoxyParams}{Parâmetros}
+{\em void} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+void 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+12 \{
+13     init_variables();
+14     read_data();
+15     read_text();
+16     run();
+17 
+18     \textcolor{keywordflow}{if} (DEBUG)
+19     \{
+20         dump_reg(\textcolor{charliteral}{'h'});
+21         dump_reg(\textcolor{charliteral}{'d'});
+22         dump_mem_recorder(0, 72, \textcolor{charliteral}{'h'});
+23         printf(\textcolor{stringliteral}{"\(\backslash\)n"});
+24         dump_mem_recorder(0, 72, \textcolor{charliteral}{'d'});
+25     \}
+26 \}
+\end{DoxyCode}
+\mbox{\label{init_8h_a2977fbd2f72d5a8a5da608f804bd2a6f}} 
+\index{init.\+h@{init.\+h}!init\+\_\+variables@{init\+\_\+variables}}
+\index{init\+\_\+variables@{init\+\_\+variables}!init.\+h@{init.\+h}}
+\subsubsection{init\+\_\+variables()}
+{\footnotesize\ttfamily void init\+\_\+variables (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Inicializador de Variáveis. 
+
+Aqui são setados os valores iniciais de todas as variáveis globais do projeto 
+\begin{DoxyParams}{Parâmetros}
+{\em void} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+void 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+35 \{
+36     \textcolor{keywordtype}{int} i;
+37 
+38     k16 = 0;
+39     k26.value = 0;
+40     rs.value = 0;
+41     rt.value = 0;
+42     rd.value = 0;
+43     shamt.value = 0;
+44     op.value = 0;
+45     funct.value = 0;
+46     pc = 0;
+47     ri = 0;
+48     epc = 0;
+49     counter = 0;
+50 
+51     \textcolor{keywordflow}{for} (i = 0; i < 32; i++)
+52         reg[i] = 0;
+53 \}
+\end{DoxyCode}
+\mbox{\label{init_8h_abd335e5ea78a68ce84aaaed3bb02ff19}} 
+\index{init.\+h@{init.\+h}!read\+\_\+data@{read\+\_\+data}}
+\index{read\+\_\+data@{read\+\_\+data}!init.\+h@{init.\+h}}
+\subsubsection{read\+\_\+data()}
+{\footnotesize\ttfamily void read\+\_\+data (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Leitor de data.\+bin. 
+
+Função que lê os dados do arquivo data.\+bin para a memória a partir do endereço (M\+E\+M\+\_\+\+S\+I\+ZE / 2) 
+\begin{DoxyParams}{Parâmetros}
+{\em void} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+void 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+62 \{
+63     FILE *data;
+64     \textcolor{keywordtype}{int} i = 0;
+65     \textcolor{keywordtype}{char} lib[] = \textcolor{stringliteral}{"../lib/"};
+66     \textcolor{keywordtype}{char} bin[] = \textcolor{stringliteral}{"/data.bin"};
+67     \textcolor{keywordtype}{char} directory[200];
+68 
+69     strcpy(directory, lib);
+70     strcat(directory, DIR);
+71     strcat(directory, bin);
+72 
+73     data = fopen(directory, \textcolor{stringliteral}{"rb"});
+74 
+75     \textcolor{keywordflow}{if} (!data)
+76     \{
+77         printf(\textcolor{stringliteral}{"Error reading\(\backslash\)n"});
+78     \}
+79     \textcolor{keywordflow}{else}
+80     \{
+81         \textcolor{keywordflow}{while} (fread(&mem[i + (MEM_SIZE / 2)], 4, 1, data) != 0)
+82         \{
+83             i++;
+84         \}
+85     \}
+86 
+87     fclose(data);
+88 \}
+\end{DoxyCode}
+\mbox{\label{init_8h_ad88dca553e1e9f42d69c2443245dbcbe}} 
+\index{init.\+h@{init.\+h}!read\+\_\+text@{read\+\_\+text}}
+\index{read\+\_\+text@{read\+\_\+text}!init.\+h@{init.\+h}}
+\subsubsection{read\+\_\+text()}
+{\footnotesize\ttfamily void read\+\_\+text (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Leitor de text.\+bin. 
+
+Função que lê os dados do arquivo text.\+bin para a memória a partir do endereço 0. 
+\begin{DoxyParams}{Parâmetros}
+{\em void} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+void 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+97 \{
+98     FILE *text;
+99     \textcolor{keywordtype}{int} i = 0;
+100     \textcolor{keywordtype}{char} lib[] = \textcolor{stringliteral}{"../lib/"};
+101     \textcolor{keywordtype}{char} bin[] = \textcolor{stringliteral}{"/text.bin"};
+102     \textcolor{keywordtype}{char} directory[200];
+103 
+104     strcpy(directory, lib);
+105     strcat(directory, DIR);
+106     strcat(directory, bin);
+107 
+108     text = fopen(directory, \textcolor{stringliteral}{"rb"});
+109 
+110     \textcolor{keywordflow}{if} (!text)
+111     \{
+112         printf(\textcolor{stringliteral}{"Error reading\(\backslash\)n"});
+113     \}
+114     \textcolor{keywordflow}{else}
+115     \{
+116         \textcolor{keywordflow}{while} (fread(&mem[i], 4, 1, text) != 0)
+117         \{
+118             i++;
+119         \}
+120     \}
+121 
+122     fclose(text);
+123 \}
+\end{DoxyCode}
+\mbox{\label{init_8h_a1ac07c339a3dae69dbacd87fcf0d2447}} 
+\index{init.\+h@{init.\+h}!set\+\_\+values@{set\+\_\+values}}
+\index{set\+\_\+values@{set\+\_\+values}!init.\+h@{init.\+h}}
+\subsubsection{set\+\_\+values()}
+{\footnotesize\ttfamily void set\+\_\+values (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+

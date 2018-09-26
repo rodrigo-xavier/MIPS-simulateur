@@ -1,0 +1,263 @@
+\section{Referência ao ficheiro memory/src/global.c}
+\label{global_8c}\index{memory/src/global.\+c@{memory/src/global.\+c}}
+{\ttfamily \#include \char`\"{}../include/global.\+h\char`\"{}}\newline
+\subsection*{Funções}
+\begin{DoxyCompactItemize}
+\item 
+void \textbf{ debug} (void)
+\begin{DoxyCompactList}\small\item\em Função que chama as funções de depuração. \end{DoxyCompactList}\item 
+void \textbf{ debug\+\_\+opcode} (int instruction)
+\begin{DoxyCompactList}\small\item\em Função que mostra informações uteis das instruções de opcode. \end{DoxyCompactList}\item 
+void \textbf{ debug\+\_\+funct} (int instruction)
+\begin{DoxyCompactList}\small\item\em Função que mostra informações úteis de funct. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Documentação das funções}
+\mbox{\label{global_8c_a146ba59440b7ebfb099f2ceb23d0a60f}} 
+\index{global.\+c@{global.\+c}!debug@{debug}}
+\index{debug@{debug}!global.\+c@{global.\+c}}
+\subsubsection{debug()}
+{\footnotesize\ttfamily void debug (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Função que chama as funções de depuração. 
+
+Se op for 0x00, mostra o conteúdo de funct, caso contrário, mostra o conteúdo de op. 
+\begin{DoxyCode}
+8 \{
+9     \textcolor{keywordflow}{if} (DEBUG)
+10     \{
+11         \textcolor{keywordflow}{if} (op.value == EXT)
+12             debug_funct(funct.value);
+13         \textcolor{keywordflow}{else}
+14             debug_opcode(op.value);
+15 
+16         getchar();
+17     \}
+18 \}
+\end{DoxyCode}
+\mbox{\label{global_8c_a54cf8c1aeb3275e1a1af00b0f84efec1}} 
+\index{global.\+c@{global.\+c}!debug\+\_\+funct@{debug\+\_\+funct}}
+\index{debug\+\_\+funct@{debug\+\_\+funct}!global.\+c@{global.\+c}}
+\subsubsection{debug\+\_\+funct()}
+{\footnotesize\ttfamily void debug\+\_\+funct (\begin{DoxyParamCaption}\item[{int}]{instruction }\end{DoxyParamCaption})}
+
+
+
+Função que mostra informações úteis de funct. 
+
+
+\begin{DoxyCode}
+119 \{
+120     \textcolor{keywordflow}{switch} (instruction)
+121     \{
+122     \textcolor{keywordflow}{case} SLL:
+123         printf(\textcolor{stringliteral}{"sll \(\backslash\)t\(\backslash\)t [rd] = \(\backslash\)t d [%d] \(\backslash\)t\(\backslash\)t h [%08x]"}, rd.value, rd.value);
+124         \textcolor{keywordflow}{break};
+125 
+126     \textcolor{keywordflow}{case} SRL:
+127         printf(\textcolor{stringliteral}{"srl \(\backslash\)t\(\backslash\)t [rd] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]"}, rd.value, rd.value);
+128         \textcolor{keywordflow}{break};
+129 
+130     \textcolor{keywordflow}{case} SRA:
+131         printf(\textcolor{stringliteral}{"sra \(\backslash\)t\(\backslash\)t reg[%d] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]"}, rd.value, reg[rd.
+      value], reg[rd.value]);
+132         \textcolor{keywordflow}{break};
+133 
+134     \textcolor{keywordflow}{case} JR:
+135         printf(\textcolor{stringliteral}{"sra \(\backslash\)t\(\backslash\)t [pc] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]"}, pc, pc);
+136         \textcolor{keywordflow}{break};
+137 
+138     \textcolor{keywordflow}{case} SYSCALL:
+139         printf(\textcolor{stringliteral}{"syscall \(\backslash\)t reg[2] = \(\backslash\)t d [%d] \(\backslash\)t\(\backslash\)t h [%08x]"}, reg[2], reg[2]);
+140         \textcolor{keywordflow}{break};
+141 
+142     \textcolor{keywordflow}{case} MFHI:
+143         printf(\textcolor{stringliteral}{"mfhi \(\backslash\)t\(\backslash\)t reg[%d] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]"}, rd.value, reg[rd.
+      value], reg[rd.value]);
+144         \textcolor{keywordflow}{break};
+145 
+146     \textcolor{keywordflow}{case} MFLO:
+147         printf(\textcolor{stringliteral}{"mflo \(\backslash\)t\(\backslash\)t reg[%d] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]"}, rd.value, reg[rd.
+      value], reg[rd.value]);
+148         \textcolor{keywordflow}{break};
+149 
+150     \textcolor{keywordflow}{case} MULT:
+151         printf(\textcolor{stringliteral}{"mult \(\backslash\)t\(\backslash\)t [hi] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]\(\backslash\)n"}, hi, hi);
+152         printf(\textcolor{stringliteral}{"mult \(\backslash\)t\(\backslash\)t [lo] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]"}, lo, lo);
+153         \textcolor{keywordflow}{break};
+154 
+155     \textcolor{keywordflow}{case} DIV:
+156         printf(\textcolor{stringliteral}{"div \(\backslash\)t\(\backslash\)t [hi] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]\(\backslash\)n"}, hi, hi);
+157         printf(\textcolor{stringliteral}{"div \(\backslash\)t\(\backslash\)t [lo] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]"}, lo, lo);
+158         \textcolor{keywordflow}{break};
+159 
+160     \textcolor{keywordflow}{case} ADD:
+161         printf(\textcolor{stringliteral}{"add \(\backslash\)t\(\backslash\)t reg[%d] = \(\backslash\)t d [%d] \(\backslash\)t\(\backslash\)t h [%08x]"}, rd.value, reg[rd.
+      value], reg[rd.value]);
+162         \textcolor{keywordflow}{break};
+163 
+164     \textcolor{keywordflow}{case} ADDU:
+165         printf(\textcolor{stringliteral}{"addu \(\backslash\)t\(\backslash\)t reg[%d] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]"}, rd.value, reg[rd.
+      value], reg[rd.value]);
+166         \textcolor{keywordflow}{break};
+167 
+168     \textcolor{keywordflow}{case} SUB:
+169         printf(\textcolor{stringliteral}{"sub \(\backslash\)t\(\backslash\)t reg[%d] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]"}, rd.value, reg[rd.
+      value], reg[rd.value]);
+170         \textcolor{keywordflow}{break};
+171 
+172     \textcolor{keywordflow}{case} AND:
+173         printf(\textcolor{stringliteral}{"and \(\backslash\)t\(\backslash\)t reg[%d] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]"}, rd.value, reg[rd.
+      value], reg[rd.value]);
+174         \textcolor{keywordflow}{break};
+175 
+176     \textcolor{keywordflow}{case} OR:
+177         printf(\textcolor{stringliteral}{"or \(\backslash\)t\(\backslash\)t reg[%d] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]"}, rd.value, reg[rd.value], 
+      reg[rd.value]);
+178         \textcolor{keywordflow}{break};
+179 
+180     \textcolor{keywordflow}{case} XOR:
+181         printf(\textcolor{stringliteral}{"xor \(\backslash\)t\(\backslash\)t reg[%d] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]"}, rd.value, reg[rd.
+      value], reg[rd.value]);
+182         \textcolor{keywordflow}{break};
+183 
+184     \textcolor{keywordflow}{case} NOR:
+185         printf(\textcolor{stringliteral}{"nor \(\backslash\)t\(\backslash\)t reg[%d] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]"}, rd.value, reg[rd.
+      value], reg[rd.value]);
+186         \textcolor{keywordflow}{break};
+187 
+188     \textcolor{keywordflow}{case} SLT:
+189         printf(\textcolor{stringliteral}{"slt \(\backslash\)t\(\backslash\)t reg[%d] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]"}, rd.value, reg[rd.
+      value], reg[rd.value]);
+190         \textcolor{keywordflow}{break};
+191 
+192     \textcolor{keywordflow}{case} SLTU:
+193         printf(\textcolor{stringliteral}{"sltu \(\backslash\)t\(\backslash\)t reg[%d] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]"}, rd.value, reg[rd.
+      value], reg[rd.value]);
+194         \textcolor{keywordflow}{break};
+195     \}
+196 \}
+\end{DoxyCode}
+\mbox{\label{global_8c_a2900e8d31a8f6864b15a190c8f9e7a7a}} 
+\index{global.\+c@{global.\+c}!debug\+\_\+opcode@{debug\+\_\+opcode}}
+\index{debug\+\_\+opcode@{debug\+\_\+opcode}!global.\+c@{global.\+c}}
+\subsubsection{debug\+\_\+opcode()}
+{\footnotesize\ttfamily void debug\+\_\+opcode (\begin{DoxyParamCaption}\item[{int}]{instruction }\end{DoxyParamCaption})}
+
+
+
+Função que mostra informações uteis das instruções de opcode. 
+
+
+\begin{DoxyCode}
+23 \{
+24     \textcolor{keywordflow}{switch} (instruction)
+25     \{
+26     \textcolor{keywordflow}{case} J:
+27         printf(\textcolor{stringliteral}{"j \(\backslash\)t\(\backslash\)t [pc] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]"}, pc, pc);
+28         \textcolor{keywordflow}{break};
+29 
+30     \textcolor{keywordflow}{case} JAL:
+31         printf(\textcolor{stringliteral}{"jal \(\backslash\)t\(\backslash\)t [pc] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]"}, pc, pc);
+32         \textcolor{keywordflow}{break};
+33 
+34     \textcolor{keywordflow}{case} BEQ:
+35         printf(\textcolor{stringliteral}{"beq \(\backslash\)t\(\backslash\)t [pc] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]"}, pc, pc);
+36         \textcolor{keywordflow}{break};
+37 
+38     \textcolor{keywordflow}{case} BNE:
+39         printf(\textcolor{stringliteral}{"bne \(\backslash\)t\(\backslash\)t [pc] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]"}, pc, pc);
+40         \textcolor{keywordflow}{break};
+41 
+42     \textcolor{keywordflow}{case} BLEZ:
+43         printf(\textcolor{stringliteral}{"blez \(\backslash\)t\(\backslash\)t [pc] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]"}, pc, pc);
+44         \textcolor{keywordflow}{break};
+45 
+46     \textcolor{keywordflow}{case} BGTZ:
+47         printf(\textcolor{stringliteral}{"bgtz \(\backslash\)t\(\backslash\)t [pc] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]"}, pc, pc);
+48         \textcolor{keywordflow}{break};
+49 
+50     \textcolor{keywordflow}{case} ADDI:
+51         printf(\textcolor{stringliteral}{"addi \(\backslash\)t\(\backslash\)t reg[%d] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]"}, rt.value, reg[rt.
+      value], reg[rt.value]);
+52         \textcolor{keywordflow}{break};
+53 
+54     \textcolor{keywordflow}{case} ADDIU:
+55         printf(\textcolor{stringliteral}{"addiu \(\backslash\)t\(\backslash\)t reg[%d] = \(\backslash\)t d [%d] \(\backslash\)t\(\backslash\)t h [%08x]"}, rt.value, reg[rt.
+      value], reg[rt.value]);
+56         \textcolor{keywordflow}{break};
+57 
+58     \textcolor{keywordflow}{case} SLTI:
+59         printf(\textcolor{stringliteral}{"slti \(\backslash\)t\(\backslash\)t reg[%d] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]"}, rt.value, reg[rt.
+      value], reg[rt.value]);
+60         \textcolor{keywordflow}{break};
+61 
+62     \textcolor{keywordflow}{case} SLTIU:
+63         printf(\textcolor{stringliteral}{"sltiu \(\backslash\)t\(\backslash\)t reg[%d] = \(\backslash\)t d [%d] \(\backslash\)t\(\backslash\)t h [%08x]"}, rt.value, reg[rt.
+      value], reg[rt.value]);
+64         \textcolor{keywordflow}{break};
+65 
+66     \textcolor{keywordflow}{case} ANDI:
+67         printf(\textcolor{stringliteral}{"andi \(\backslash\)t\(\backslash\)t reg[%d] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]"}, rt.value, reg[rt.
+      value], reg[rt.value]);
+68         \textcolor{keywordflow}{break};
+69 
+70     \textcolor{keywordflow}{case} ORI:
+71         printf(\textcolor{stringliteral}{"ori \(\backslash\)t\(\backslash\)t reg[%d] = \(\backslash\)t d [%d] \(\backslash\)t\(\backslash\)t h [%08x]"}, rt.value, reg[rt.
+      value], reg[rt.value]);
+72         \textcolor{keywordflow}{break};
+73 
+74     \textcolor{keywordflow}{case} XORI:
+75         printf(\textcolor{stringliteral}{"xori \(\backslash\)t\(\backslash\)t reg[%d] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]"}, rt.value, reg[rt.
+      value], reg[rt.value]);
+76         \textcolor{keywordflow}{break};
+77 
+78     \textcolor{keywordflow}{case} LUI:
+79         printf(\textcolor{stringliteral}{"lui \(\backslash\)t\(\backslash\)t reg[%d] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]"}, rt.value, reg[rt.
+      value], reg[rt.value]);
+80         \textcolor{keywordflow}{break};
+81 
+82     \textcolor{keywordflow}{case} LB:
+83         printf(\textcolor{stringliteral}{"lb \(\backslash\)t\(\backslash\)t reg[%d] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]"}, rt.value, reg[rt.value], 
+      reg[rt.value]);
+84         \textcolor{keywordflow}{break};
+85 
+86     \textcolor{keywordflow}{case} LH:
+87         printf(\textcolor{stringliteral}{"lh \(\backslash\)t\(\backslash\)t reg[%d] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]"}, rt.value, reg[rt.value], 
+      reg[rt.value]);
+88         \textcolor{keywordflow}{break};
+89 
+90     \textcolor{keywordflow}{case} LW:
+91         printf(\textcolor{stringliteral}{"lw \(\backslash\)t\(\backslash\)t reg[%d] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]"}, rt.value, reg[rt.value], 
+      reg[rt.value]);
+92         \textcolor{keywordflow}{break};
+93 
+94     \textcolor{keywordflow}{case} LBU:
+95         printf(\textcolor{stringliteral}{"lbu \(\backslash\)t\(\backslash\)t reg[%d] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]"}, rt.value, reg[rt.
+      value], reg[rt.value]);
+96         \textcolor{keywordflow}{break};
+97 
+98     \textcolor{keywordflow}{case} LHU:
+99         printf(\textcolor{stringliteral}{"lhu \(\backslash\)t\(\backslash\)t reg[%d] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]"}, rt.value, reg[rt.
+      value], reg[rt.value]);
+100         \textcolor{keywordflow}{break};
+101 
+102     \textcolor{keywordflow}{case} SB:
+103         printf(\textcolor{stringliteral}{"sb \(\backslash\)t\(\backslash\)t reg[%d] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]"}, k16, reg[rt.value], 
+      reg[rt.value]);
+104         \textcolor{keywordflow}{break};
+105 
+106     \textcolor{keywordflow}{case} SH:
+107         printf(\textcolor{stringliteral}{"sh \(\backslash\)t\(\backslash\)t reg[%d] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]"}, rs.value, reg[rs.value], 
+      reg[rs.value]);
+108         \textcolor{keywordflow}{break};
+109 
+110     \textcolor{keywordflow}{case} SW:
+111         printf(\textcolor{stringliteral}{"sw \(\backslash\)t\(\backslash\)t reg[%d] = \(\backslash\)t d [%d] \(\backslash\)t h [%08x]"}, rs.value, reg[rs.value], 
+      reg[rs.value]);
+112         \textcolor{keywordflow}{break};
+113     \}
+114 \}
+\end{DoxyCode}

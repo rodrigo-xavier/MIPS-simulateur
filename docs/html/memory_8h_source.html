@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.14"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Trabalho 2: Código-Fonte de memory/include/memory.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Trabalho 2
+   &#160;<span id="projectnumber">2.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.8.14 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Localizar');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_267116d250309cbe7bd39c0026ee016a.html">memory</a></li><li class="navelem"><a class="el" href="dir_65e15126d72ed444e057744f23ffe47a.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">memory.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="memory_8h.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef MEMORY_H_INCLUDED</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define MEMORY_H_INCLUDED</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="global_8h.html">global.h</a>&quot;</span></div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keywordtype">void</span> <a class="code" href="memory_8h.html#a6cbcfd8ab7562a601d0da896abc66aeb">dump_mem</a>(uint32_t, uint32_t);</div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;int32_t <a class="code" href="memory_8h.html#ab7da1799afb42652e135e29ab57fc015">lw</a>(uint32_t, int16_t);</div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;int32_t <a class="code" href="memory_8h.html#aa2686cd57bf2dff9ac555939933ebadf">lh</a>(uint32_t, int16_t);</div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;uint32_t <a class="code" href="memory_8h.html#a391d3cd477ef6d8a7fd469a3a032b7d8">lhu</a>(uint32_t, int16_t);</div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;int32_t <a class="code" href="memory_8h.html#a7dd0579e9662cb4b5ae5ccabedef4fdc">lb</a>(uint32_t, int16_t);</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;uint32_t <a class="code" href="memory_8h.html#ad8a727cf51a68edb9ae6e86223ad539b">lbu</a>(uint32_t, int16_t);</div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keywordtype">void</span> <a class="code" href="memory_8h.html#a916aa50cb27c12d9870bd7d53425f949">sw</a>(uint32_t, int16_t, int32_t);</div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keywordtype">void</span> <a class="code" href="memory_8h.html#aa44aab3931ad716019ff3449f895e5e8">sh</a>(uint32_t, int16_t, int16_t);</div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keywordtype">void</span> <a class="code" href="memory_8h.html#a1e98f7a2e8e450eebfb2f6b6be93ab2d">sb</a>(uint32_t, int16_t, int8_t);</div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#endif</span></div><div class="ttc" id="memory_8h_html_aa44aab3931ad716019ff3449f895e5e8"><div class="ttname"><a href="memory_8h.html#aa44aab3931ad716019ff3449f895e5e8">sh</a></div><div class="ttdeci">void sh(uint32_t, int16_t, int16_t)</div><div class="ttdoc">Função que salva meia palavra de 32 bits na memória. </div><div class="ttdef"><b>Definition:</b> memory.c:291</div></div>
+<div class="ttc" id="memory_8h_html_aa2686cd57bf2dff9ac555939933ebadf"><div class="ttname"><a href="memory_8h.html#aa2686cd57bf2dff9ac555939933ebadf">lh</a></div><div class="ttdeci">int32_t lh(uint32_t, int16_t)</div><div class="ttdoc">Função que lê meia palavra de 32 bits. </div><div class="ttdef"><b>Definition:</b> memory.c:58</div></div>
+<div class="ttc" id="memory_8h_html_a6cbcfd8ab7562a601d0da896abc66aeb"><div class="ttname"><a href="memory_8h.html#a6cbcfd8ab7562a601d0da896abc66aeb">dump_mem</a></div><div class="ttdeci">void dump_mem(uint32_t, uint32_t)</div><div class="ttdoc">Memória. </div><div class="ttdef"><b>Definition:</b> memory.c:10</div></div>
+<div class="ttc" id="memory_8h_html_a1e98f7a2e8e450eebfb2f6b6be93ab2d"><div class="ttname"><a href="memory_8h.html#a1e98f7a2e8e450eebfb2f6b6be93ab2d">sb</a></div><div class="ttdeci">void sb(uint32_t, int16_t, int8_t)</div><div class="ttdoc">Função que salva um byte na memória. </div><div class="ttdef"><b>Definition:</b> memory.c:331</div></div>
+<div class="ttc" id="global_8h_html"><div class="ttname"><a href="global_8h.html">global.h</a></div></div>
+<div class="ttc" id="memory_8h_html_a7dd0579e9662cb4b5ae5ccabedef4fdc"><div class="ttname"><a href="memory_8h.html#a7dd0579e9662cb4b5ae5ccabedef4fdc">lb</a></div><div class="ttdeci">int32_t lb(uint32_t, int16_t)</div><div class="ttdoc">Função que lê um byte. </div><div class="ttdef"><b>Definition:</b> memory.c:156</div></div>
+<div class="ttc" id="memory_8h_html_ad8a727cf51a68edb9ae6e86223ad539b"><div class="ttname"><a href="memory_8h.html#ad8a727cf51a68edb9ae6e86223ad539b">lbu</a></div><div class="ttdeci">uint32_t lbu(uint32_t, int16_t)</div><div class="ttdoc">Função que lê um byte sem sinal. </div><div class="ttdef"><b>Definition:</b> memory.c:214</div></div>
+<div class="ttc" id="memory_8h_html_a391d3cd477ef6d8a7fd469a3a032b7d8"><div class="ttname"><a href="memory_8h.html#a391d3cd477ef6d8a7fd469a3a032b7d8">lhu</a></div><div class="ttdeci">uint32_t lhu(uint32_t, int16_t)</div><div class="ttdoc">Função que lê meia palavra de 32 bits sem sinal. </div><div class="ttdef"><b>Definition:</b> memory.c:110</div></div>
+<div class="ttc" id="memory_8h_html_a916aa50cb27c12d9870bd7d53425f949"><div class="ttname"><a href="memory_8h.html#a916aa50cb27c12d9870bd7d53425f949">sw</a></div><div class="ttdeci">void sw(uint32_t, int16_t, int32_t)</div><div class="ttdoc">Função que salva uma palavra de 32 bits na memória. </div><div class="ttdef"><b>Definition:</b> memory.c:269</div></div>
+<div class="ttc" id="memory_8h_html_ab7da1799afb42652e135e29ab57fc015"><div class="ttname"><a href="memory_8h.html#ab7da1799afb42652e135e29ab57fc015">lw</a></div><div class="ttdeci">int32_t lw(uint32_t, int16_t)</div><div class="ttdoc">Função que lê uma palavra de 32 bits. </div><div class="ttdef"><b>Definition:</b> memory.c:29</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.14
+</small></address>
+</body>
+</html>

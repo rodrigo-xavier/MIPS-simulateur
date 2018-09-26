@@ -1,0 +1,498 @@
+\section{Referência ao ficheiro memory/src/recorder.c}
+\label{recorder_8c}\index{memory/src/recorder.\+c@{memory/src/recorder.\+c}}
+{\ttfamily \#include \char`\"{}../include/recorder.\+h\char`\"{}}\newline
+\subsection*{Funções}
+\begin{DoxyCompactItemize}
+\item 
+void \textbf{ fetch} ()
+\begin{DoxyCompactList}\small\item\em Função que lê palavra da memória. \end{DoxyCompactList}\item 
+void \textbf{ decode} (void)
+\begin{DoxyCompactList}\small\item\em Função que decodifica uma instrução. \end{DoxyCompactList}\item 
+void \textbf{ signal\+\_\+extension} (void)
+\begin{DoxyCompactList}\small\item\em Função que estende o sinal de k16. \end{DoxyCompactList}\item 
+void \textbf{ execute} (void)
+\begin{DoxyCompactList}\small\item\em Função que executa as instruções de opcode e funct. \end{DoxyCompactList}\item 
+void \textbf{ step} (void)
+\begin{DoxyCompactList}\small\item\em Função que lê, decodifica, executa e debuga cada instrução. \end{DoxyCompactList}\item 
+void \textbf{ run} (void)
+\begin{DoxyCompactList}\small\item\em Função que roda todas as instruções da memória. \end{DoxyCompactList}\item 
+void \textbf{ dump\+\_\+mem\+\_\+recorder} (int start, int end, char format)
+\begin{DoxyCompactList}\small\item\em Função que mostra conteúdo da memória. \end{DoxyCompactList}\item 
+void \textbf{ dump\+\_\+reg} (char format)
+\begin{DoxyCompactList}\small\item\em Função que mostra o conteúdo dos registradores. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Documentação das funções}
+\mbox{\label{recorder_8c_a34bfe429bf645af9afd5bc1554f5c589}} 
+\index{recorder.\+c@{recorder.\+c}!decode@{decode}}
+\index{decode@{decode}!recorder.\+c@{recorder.\+c}}
+\subsubsection{decode()}
+{\footnotesize\ttfamily void decode (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Função que decodifica uma instrução. 
+
+Esta função faz uso do registrador ri, atribuindo cada parte da instrução contida em ri, em um campo 
+\begin{DoxyCode}
+19 \{
+20     op.value = (ri >> 26) & 0x3f;
+21     rs.value = (ri >> 21) & 0x1f;
+22     rt.value = (ri >> 16) & 0x1f;
+23     rd.value = (ri >> 11) & 0x1f;
+24     shamt.value = (ri >> 6) & 0x1f;
+25     funct.value = ri & 0x3f;
+26     k26.value = ri & 0x3ffffff;
+27     k16 = ri & 0xffff;
+28     signal_extension();
+29 \}
+\end{DoxyCode}
+\mbox{\label{recorder_8c_a5cf3233ddc07fd2e444fae11b035669c}} 
+\index{recorder.\+c@{recorder.\+c}!dump\+\_\+mem\+\_\+recorder@{dump\+\_\+mem\+\_\+recorder}}
+\index{dump\+\_\+mem\+\_\+recorder@{dump\+\_\+mem\+\_\+recorder}!recorder.\+c@{recorder.\+c}}
+\subsubsection{dump\+\_\+mem\+\_\+recorder()}
+{\footnotesize\ttfamily void dump\+\_\+mem\+\_\+recorder (\begin{DoxyParamCaption}\item[{int}]{start,  }\item[{int}]{end,  }\item[{char}]{format }\end{DoxyParamCaption})}
+
+
+
+Função que mostra conteúdo da memória. 
+
+Esta função recebe um endereço inicial, e um endereço final e mostra o conteúdo da memória contido nestes endereços nos formatos hexadecimal ou decimal 
+\begin{DoxyParams}{Parâmetros}
+{\em int} & start, int end, char format \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}
+315 \{
+316     \textcolor{keywordtype}{int} i;
+317 
+318     \textcolor{keywordflow}{if} (start < end && ((start + end) % 4) == 0)
+319     \{
+320         \textcolor{keywordflow}{if} (format == \textcolor{charliteral}{'h'})
+321         \{
+322             \textcolor{keywordflow}{for} (i = start / 4; i < end / 4; i++)
+323             \{
+324                 printf(\textcolor{stringliteral}{"mem[%d] =\(\backslash\)t\(\backslash\)t %08x\(\backslash\)n"}, i, mem[i]);
+325             \}
+326         \}
+327         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (format == \textcolor{charliteral}{'d'})
+328         \{
+329             \textcolor{keywordflow}{for} (i = start / 4; i < end / 4; i++)
+330             \{
+331                 printf(\textcolor{stringliteral}{"mem[%d] =\(\backslash\)t\(\backslash\)t %d\(\backslash\)n"}, i, mem[i]);
+332             \}
+333         \}
+334         \textcolor{keywordflow}{else}
+335         \{
+336             printf(\textcolor{stringliteral}{"Invalid Format\(\backslash\)n"});
+337         \}
+338     \}
+339     \textcolor{keywordflow}{else}
+340     \{
+341         printf(\textcolor{stringliteral}{"Non-aligned address\(\backslash\)n"});
+342     \}
+343 \}
+\end{DoxyCode}
+\mbox{\label{recorder_8c_acfc910f4096cbce6a65637b1e06c7736}} 
+\index{recorder.\+c@{recorder.\+c}!dump\+\_\+reg@{dump\+\_\+reg}}
+\index{dump\+\_\+reg@{dump\+\_\+reg}!recorder.\+c@{recorder.\+c}}
+\subsubsection{dump\+\_\+reg()}
+{\footnotesize\ttfamily void dump\+\_\+reg (\begin{DoxyParamCaption}\item[{char}]{format }\end{DoxyParamCaption})}
+
+
+
+Função que mostra o conteúdo dos registradores. 
+
+Esta função percorre todos os registradores, mostrando o conteúdo de cada um 
+\begin{DoxyParams}{Parâmetros}
+{\em char} & format \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}
+351 \{
+352     \textcolor{keywordtype}{int} i;
+353 
+354     \textcolor{keywordflow}{if} (format == \textcolor{charliteral}{'h'})
+355     \{
+356         printf(\textcolor{stringliteral}{"\(\backslash\)nregister ($zero):\(\backslash\)t %08x\(\backslash\)n"}, reg[0]);
+357         printf(\textcolor{stringliteral}{"register ($at):\(\backslash\)t\(\backslash\)t %08x\(\backslash\)n"}, reg[1]);
+358         printf(\textcolor{stringliteral}{"register ($v0):\(\backslash\)t\(\backslash\)t %08x\(\backslash\)n"}, reg[2]);
+359         printf(\textcolor{stringliteral}{"register ($v1):\(\backslash\)t\(\backslash\)t %08x\(\backslash\)n"}, reg[3]);
+360 
+361         \textcolor{keywordflow}{for} (i = 4; i < 8; i++)
+362             printf(\textcolor{stringliteral}{"register ($a%d):\(\backslash\)t\(\backslash\)t %08x\(\backslash\)n"}, (i - 4), reg[i]);
+363         \textcolor{keywordflow}{for} (i = 8; i < 16; i++)
+364             printf(\textcolor{stringliteral}{"register ($t%d):\(\backslash\)t\(\backslash\)t %08x\(\backslash\)n"}, (i - 8), reg[i]);
+365         \textcolor{keywordflow}{for} (i = 16; i < 26; i++)
+366             printf(\textcolor{stringliteral}{"register ($s%d):\(\backslash\)t\(\backslash\)t %08x\(\backslash\)n"}, (i - 16), reg[i]);
+367 
+368         printf(\textcolor{stringliteral}{"register ($k0):\(\backslash\)t\(\backslash\)t %08x\(\backslash\)n"}, reg[26]);
+369         printf(\textcolor{stringliteral}{"register ($k1):\(\backslash\)t\(\backslash\)t %08x\(\backslash\)n"}, reg[27]);
+370         printf(\textcolor{stringliteral}{"register ($gp):\(\backslash\)t\(\backslash\)t %08x\(\backslash\)n"}, reg[28]);
+371         printf(\textcolor{stringliteral}{"register ($sp):\(\backslash\)t\(\backslash\)t %08x\(\backslash\)n"}, reg[29]);
+372         printf(\textcolor{stringliteral}{"register ($fp):\(\backslash\)t\(\backslash\)t %08x\(\backslash\)n"}, reg[30]);
+373         printf(\textcolor{stringliteral}{"register ($ra):\(\backslash\)t\(\backslash\)t %08x\(\backslash\)n"}, reg[31]);
+374         printf(\textcolor{stringliteral}{"register (pc):\(\backslash\)t\(\backslash\)t %08x\(\backslash\)n"}, pc);
+375         printf(\textcolor{stringliteral}{"register (hi):\(\backslash\)t\(\backslash\)t %08x\(\backslash\)n"}, hi);
+376         printf(\textcolor{stringliteral}{"register (lo):\(\backslash\)t\(\backslash\)t %08x\(\backslash\)n\(\backslash\)n"}, lo);
+377         printf(\textcolor{stringliteral}{"rs.value:\(\backslash\)t\(\backslash\)t %08x\(\backslash\)n"}, rs.value);
+378         printf(\textcolor{stringliteral}{"rt.value:\(\backslash\)t\(\backslash\)t %08x\(\backslash\)n"}, rt.value);
+379         printf(\textcolor{stringliteral}{"rd.value:\(\backslash\)t\(\backslash\)t %08x\(\backslash\)n"}, rd.value);
+380         printf(\textcolor{stringliteral}{"shamt:\(\backslash\)t\(\backslash\)t\(\backslash\)t %08x\(\backslash\)n"}, shamt.value);
+381         printf(\textcolor{stringliteral}{"op:\(\backslash\)t\(\backslash\)t\(\backslash\)t %08x\(\backslash\)n"}, op.value);
+382         printf(\textcolor{stringliteral}{"funct:\(\backslash\)t\(\backslash\)t\(\backslash\)t %08x\(\backslash\)n"}, funct.value);
+383         printf(\textcolor{stringliteral}{"k16:\(\backslash\)t\(\backslash\)t\(\backslash\)t %08x\(\backslash\)n"}, k16);
+384         printf(\textcolor{stringliteral}{"k26:\(\backslash\)t\(\backslash\)t\(\backslash\)t %08x\(\backslash\)n\(\backslash\)n"}, k26);
+385     \}
+386     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (format == \textcolor{charliteral}{'d'})
+387     \{
+388         printf(\textcolor{stringliteral}{"\(\backslash\)nregister ($zero):\(\backslash\)t %d\(\backslash\)n"}, reg[0]);
+389         printf(\textcolor{stringliteral}{"register ($at):\(\backslash\)t\(\backslash\)t %d\(\backslash\)n"}, reg[1]);
+390         printf(\textcolor{stringliteral}{"register ($v0):\(\backslash\)t\(\backslash\)t %d\(\backslash\)n"}, reg[2]);
+391         printf(\textcolor{stringliteral}{"register ($v1):\(\backslash\)t\(\backslash\)t %d\(\backslash\)n"}, reg[3]);
+392 
+393         \textcolor{keywordflow}{for} (i = 4; i < 8; i++)
+394             printf(\textcolor{stringliteral}{"register ($a%d):\(\backslash\)t\(\backslash\)t %d\(\backslash\)n"}, (i - 4), reg[i]);
+395         \textcolor{keywordflow}{for} (i = 8; i < 16; i++)
+396             printf(\textcolor{stringliteral}{"register ($t%d):\(\backslash\)t\(\backslash\)t %d\(\backslash\)n"}, (i - 8), reg[i]);
+397         \textcolor{keywordflow}{for} (i = 16; i < 26; i++)
+398             printf(\textcolor{stringliteral}{"register ($s%d):\(\backslash\)t\(\backslash\)t %d\(\backslash\)n"}, (i - 16), reg[i]);
+399 
+400         printf(\textcolor{stringliteral}{"register ($k0):\(\backslash\)t\(\backslash\)t %d\(\backslash\)n"}, reg[26]);
+401         printf(\textcolor{stringliteral}{"register ($k1):\(\backslash\)t\(\backslash\)t %d\(\backslash\)n"}, reg[27]);
+402         printf(\textcolor{stringliteral}{"register ($gp):\(\backslash\)t\(\backslash\)t %d\(\backslash\)n"}, reg[28]);
+403         printf(\textcolor{stringliteral}{"register ($sp):\(\backslash\)t\(\backslash\)t %d\(\backslash\)n"}, reg[29]);
+404         printf(\textcolor{stringliteral}{"register ($fp):\(\backslash\)t\(\backslash\)t %d\(\backslash\)n"}, reg[30]);
+405         printf(\textcolor{stringliteral}{"register ($ra):\(\backslash\)t\(\backslash\)t %d\(\backslash\)n"}, reg[31]);
+406         printf(\textcolor{stringliteral}{"register (pc):\(\backslash\)t\(\backslash\)t %d\(\backslash\)n"}, pc);
+407         printf(\textcolor{stringliteral}{"register (hi):\(\backslash\)t\(\backslash\)t %d\(\backslash\)n"}, hi);
+408         printf(\textcolor{stringliteral}{"register (lo):\(\backslash\)t\(\backslash\)t %d\(\backslash\)n\(\backslash\)n"}, lo);
+409     \}
+410     \textcolor{keywordflow}{else}
+411     \{
+412         printf(\textcolor{stringliteral}{"Invalid Format\(\backslash\)n"});
+413     \}
+414 \}
+\end{DoxyCode}
+\mbox{\label{recorder_8c_a4fbe3f6f1beeb9904f150f3d65943a1c}} 
+\index{recorder.\+c@{recorder.\+c}!execute@{execute}}
+\index{execute@{execute}!recorder.\+c@{recorder.\+c}}
+\subsubsection{execute()}
+{\footnotesize\ttfamily void execute (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Função que executa as instruções de opcode e funct. 
+
+Depois de lidas e decodificadas as instruções do registrador de instruções (ri), os comandos opcode e funct são avaliados e selecionados para executar os comandos da instrução 
+\begin{DoxyCode}
+50 \{
+51     int64\_t product;
+52     uint16\_t kte = 0;
+53     \textcolor{keywordtype}{int} i;
+54     \textcolor{keywordtype}{char} character = \textcolor{charliteral}{' '};
+55 
+56     \textcolor{keywordflow}{switch} (op.value)
+57     \{
+58     \textcolor{keywordflow}{case} EXT:
+59         \textcolor{keywordflow}{switch} (funct.value)
+60         \{
+61         \textcolor{keywordflow}{case} SLL:
+62             reg[rd.value] = reg[rt.value] << shamt.value;
+63             \textcolor{keywordflow}{break};
+64 
+65         \textcolor{keywordflow}{case} SRL:
+66             \textcolor{keywordflow}{if} (shamt.value != 0)
+67             \{
+68                 reg[rd.value] = (reg[rt.value] & 0x7fffffff) >> (shamt.value - 1);
+69             \}
+70 
+71             \textcolor{keywordflow}{break};
+72 
+73         \textcolor{keywordflow}{case} SRA:
+74             \textcolor{keywordflow}{if} (reg[rt.value] >> 31 == 1)
+75             \{
+76                 reg[rd.value] = reg[rt.value];
+77                 \textcolor{keywordflow}{for} (i = 0; i < shamt.value; i++)
+78                     reg[rd.value] = reg[rd.value] >> 1;
+79                 reg[rd.value] = reg[rd.value] | 0x80000000;
+80             \}
+81             \textcolor{keywordflow}{else}
+82             \{
+83                 reg[rd.value] = reg[rt.value] >> shamt.value;
+84             \}
+85             \textcolor{keywordflow}{break};
+86 
+87         \textcolor{keywordflow}{case} JR:
+88             pc = reg[rs.value];
+89             \textcolor{keywordflow}{break};
+90 
+91         \textcolor{keywordflow}{case} SYSCALL:
+92             \textcolor{keywordflow}{switch} (reg[2])
+93             \{
+94             \textcolor{keywordflow}{case} 1:
+95                 \textcolor{keywordflow}{if} (!DEBUG)
+96                     printf(\textcolor{stringliteral}{"%d"}, reg[4]);
+97                 \textcolor{keywordflow}{break};
+98 
+99             \textcolor{keywordflow}{case} 4:
+100                 \textcolor{keywordflow}{while} (character != \textcolor{charliteral}{'\(\backslash\)0'})
+101                 \{
+102                     \textcolor{keywordflow}{if} (!DEBUG)
+103                         printf(\textcolor{stringliteral}{"%c"}, character);
+104 
+105                     character = lb(reg[4], kte);
+106 
+107                     kte += 1;
+108                 \}
+109                 \textcolor{keywordflow}{break};
+110 
+111             \textcolor{keywordflow}{case} 10:
+112                 epc = 1;
+113                 \textcolor{keywordflow}{break};
+114 
+115             \textcolor{keywordflow}{default}:
+116                 printf(\textcolor{stringliteral}{"Invalid syscall"});
+117                 epc = 2;
+118             \}
+119             \textcolor{keywordflow}{break};
+120 
+121         \textcolor{keywordflow}{case} MFHI:
+122             reg[rd.value] = hi;
+123             \textcolor{keywordflow}{break};
+124 
+125         \textcolor{keywordflow}{case} MFLO:
+126             reg[rd.value] = lo;
+127             \textcolor{keywordflow}{break};
+128 
+129         \textcolor{keywordflow}{case} MULT:
+130             product = (int64\_t)reg[rs.value] * (int64\_t)reg[rt.value];
+131             hi = (uint32\_t)((product >> 32) & 0xffffffff);
+132             lo = (int32\_t)product & 0xffffffff;
+133             \textcolor{keywordflow}{break};
+134 
+135         \textcolor{keywordflow}{case} DIV:
+136             hi = reg[rs.value] % reg[rt.value];
+137             lo = reg[rs.value] / reg[rt.value];
+138             \textcolor{keywordflow}{break};
+139 
+140         \textcolor{keywordflow}{case} ADD:
+141             reg[rd.value] = reg[rs.value] + reg[rt.value];
+142             \textcolor{keywordflow}{break};
+143 
+144         \textcolor{keywordflow}{case} ADDU:
+145             reg[rd.value] = (uint32\_t)reg[rs.value] + reg[rt.value];
+146             \textcolor{keywordflow}{break};
+147 
+148         \textcolor{keywordflow}{case} SUB:
+149             reg[rd.value] = reg[rs.value] - reg[rt.value];
+150             \textcolor{keywordflow}{break};
+151 
+152         \textcolor{keywordflow}{case} AND:
+153             reg[rd.value] = reg[rs.value] & reg[rt.value];
+154             \textcolor{keywordflow}{break};
+155 
+156         \textcolor{keywordflow}{case} OR:
+157             reg[rd.value] = reg[rs.value] | reg[rt.value];
+158             \textcolor{keywordflow}{break};
+159 
+160         \textcolor{keywordflow}{case} XOR:
+161             reg[rd.value] = reg[rs.value] ^ reg[rt.value];
+162             \textcolor{keywordflow}{break};
+163 
+164         \textcolor{keywordflow}{case} NOR:
+165             reg[rd.value] = ~(reg[rs.value] | reg[rt.value]);
+166             \textcolor{keywordflow}{break};
+167 
+168         \textcolor{keywordflow}{case} SLT:
+169             reg[rd.value] = (reg[rs.value] < reg[rt.value]) ? 1 : 0;
+170             \textcolor{keywordflow}{break};
+171 
+172         \textcolor{keywordflow}{case} SLTU:
+173             reg[rd.value] = (uint32\_t)(reg[rs.value] < reg[rt.value]) ? 1 : 0;
+174             \textcolor{keywordflow}{break};
+175         \}
+176         \textcolor{keywordflow}{break};
+177 
+178     \textcolor{keywordflow}{case} J:
+179         pc = (pc & 0xf0000000) | (k26.value << 2);
+180         \textcolor{keywordflow}{break};
+181 
+182     \textcolor{keywordflow}{case} JAL:
+183         reg[31] = pc;
+184         pc = (pc & 0xf0000000) | (k26.value << 2);
+185         \textcolor{keywordflow}{break};
+186 
+187     \textcolor{keywordflow}{case} BEQ:
+188         pc += (reg[rs.value] == reg[rt.value]) ? (k16 << 2) : 0;
+189         \textcolor{keywordflow}{break};
+190 
+191     \textcolor{keywordflow}{case} BNE:
+192         pc += (reg[rs.value] != reg[rt.value]) ? (k16 << 2) : 0;
+193         \textcolor{keywordflow}{break};
+194 
+195     \textcolor{keywordflow}{case} BLEZ:
+196         pc += (reg[rs.value] <= 0) ? (k16 << 2) : 0;
+197         \textcolor{keywordflow}{break};
+198 
+199     \textcolor{keywordflow}{case} BGTZ:
+200         pc += (reg[rs.value] > 0) ? (k16 << 2) : 0;
+201         \textcolor{keywordflow}{break};
+202 
+203     \textcolor{keywordflow}{case} ADDI:
+204         reg[rt.value] = reg[rs.value] + k16;
+205         \textcolor{keywordflow}{break};
+206 
+207     \textcolor{keywordflow}{case} ADDIU:
+208         reg[rt.value] = (uint32\_t)(reg[rs.value] + k16);
+209         \textcolor{keywordflow}{break};
+210 
+211     \textcolor{keywordflow}{case} SLTI:
+212         reg[rt.value] = (reg[rs.value] < k16) ? 1 : 0;
+213         \textcolor{keywordflow}{break};
+214 
+215     \textcolor{keywordflow}{case} SLTIU:
+216         reg[rt.value] = (((uint32\_t)reg[rs.value]) < k16) ? 1 : 0;
+217         \textcolor{keywordflow}{break};
+218 
+219     \textcolor{keywordflow}{case} ANDI:
+220         reg[rt.value] = reg[rs.value] & k16;
+221         \textcolor{keywordflow}{break};
+222 
+223     \textcolor{keywordflow}{case} ORI:
+224         k16 &= 0x0000ffff;
+225         reg[rt.value] = reg[rs.value] | k16;
+226         \textcolor{keywordflow}{break};
+227 
+228     \textcolor{keywordflow}{case} XORI:
+229         reg[rt.value] = reg[rs.value] ^ k16;
+230         \textcolor{keywordflow}{break};
+231 
+232     \textcolor{keywordflow}{case} LUI:
+233         reg[rt.value] = (int32\_t)k16 << 16;
+234         \textcolor{keywordflow}{break};
+235 
+236     \textcolor{keywordflow}{case} LB:
+237         reg[rt.value] = lb(reg[rs.value], k16) | 0xffffff00;
+238         \textcolor{keywordflow}{break};
+239 
+240     \textcolor{keywordflow}{case} LH:
+241         reg[rt.value] = lh(reg[rs.value], k16) | 0xffff0000;
+242         \textcolor{keywordflow}{break};
+243 
+244     \textcolor{keywordflow}{case} LW:
+245         reg[rt.value] = lw(reg[rs.value], k16);
+246         \textcolor{keywordflow}{break};
+247 
+248     \textcolor{keywordflow}{case} LBU:
+249         reg[rt.value] = lbu(reg[rs.value], k16);
+250         \textcolor{keywordflow}{break};
+251 
+252     \textcolor{keywordflow}{case} LHU:
+253         reg[rt.value] = lhu(reg[rs.value], k16);
+254         \textcolor{keywordflow}{break};
+255 
+256     \textcolor{keywordflow}{case} SB:
+257         sb(reg[rs.value], k16, reg[rt.value]);
+258         \textcolor{keywordflow}{break};
+259 
+260     \textcolor{keywordflow}{case} SH:
+261         sh(reg[rs.value], k16, reg[rt.value]);
+262         \textcolor{keywordflow}{break};
+263 
+264     \textcolor{keywordflow}{case} SW:
+265         sw(reg[rs.value], k16, reg[rt.value]);
+266         \textcolor{keywordflow}{break};
+267 
+268     \textcolor{keywordflow}{default}:
+269         printf(\textcolor{stringliteral}{"Instruction not found\(\backslash\)n"});
+270         epc = 2;
+271         \textcolor{keywordflow}{break};
+272     \}
+273 \}
+\end{DoxyCode}
+\mbox{\label{recorder_8c_a3865f8ea93e31d9b5d2726a80c0de966}} 
+\index{recorder.\+c@{recorder.\+c}!fetch@{fetch}}
+\index{fetch@{fetch}!recorder.\+c@{recorder.\+c}}
+\subsubsection{fetch()}
+{\footnotesize\ttfamily void fetch (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Função que lê palavra da memória. 
+
+Registrador.
+
+Esta função lê uma instrução da memória, atribuindo a instrução à ri, e fazendo pc apontar para a próxima instrução. 
+\begin{DoxyCode}
+9 \{
+10     ri = lw(0, pc);
+11     pc += 4;
+12 \}
+\end{DoxyCode}
+\mbox{\label{recorder_8c_a05e0ffe612d44e6d7f3a9ae5b9df56a2}} 
+\index{recorder.\+c@{recorder.\+c}!run@{run}}
+\index{run@{run}!recorder.\+c@{recorder.\+c}}
+\subsubsection{run()}
+{\footnotesize\ttfamily void run (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Função que roda todas as instruções da memória. 
+
+Esta função roda todas as intruções da memória até acabarem as instruções, ou o bloco de instruções exceder o limite 
+\begin{DoxyCode}
+292 \{
+293     \textcolor{keywordtype}{int} i = 0;
+294 
+295     \textcolor{keywordflow}{if} (DEBUG)
+296         printf(\textcolor{stringliteral}{"Pressione enter para pular de instrução\(\backslash\)n\(\backslash\)n"});
+297     \textcolor{keywordflow}{while} ((epc == 0) && (pc < (MEM_SIZE / 2)))
+298     \{
+299         step();
+300     \}
+301 
+302     \textcolor{keywordflow}{if} (epc == 1)
+303         printf(\textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)nSucessfull!!! Closed by syscall\(\backslash\)n"});
+304     \textcolor{keywordflow}{else}
+305         printf(\textcolor{stringliteral}{"Error!!! Instruction not found\(\backslash\)n"});
+306 \}
+\end{DoxyCode}
+\mbox{\label{recorder_8c_a19d0bbfdb5f0b372b4d230b601aaebd6}} 
+\index{recorder.\+c@{recorder.\+c}!signal\+\_\+extension@{signal\+\_\+extension}}
+\index{signal\+\_\+extension@{signal\+\_\+extension}!recorder.\+c@{recorder.\+c}}
+\subsubsection{signal\+\_\+extension()}
+{\footnotesize\ttfamily void signal\+\_\+extension (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Função que estende o sinal de k16. 
+
+Por padrão, k16 é preenchido com 0\textquotesingle{}s nos primeiros 16 bits e informação nos outros 16 bits. Se o sinal de k16 for negativo, a função preenche os primeiros 16 bits com 1\textquotesingle{}s, extendendo o sinal negativo. 
+\begin{DoxyCode}
+38 \{
+39     \textcolor{keywordflow}{if} ((k16 >> 15) == 1)
+40         k16 |= 0xffff0000;
+41 \}
+\end{DoxyCode}
+\mbox{\label{recorder_8c_a9f1dffc0dde87c0cc5eea9fc77d89b28}} 
+\index{recorder.\+c@{recorder.\+c}!step@{step}}
+\index{step@{step}!recorder.\+c@{recorder.\+c}}
+\subsubsection{step()}
+{\footnotesize\ttfamily void step (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Função que lê, decodifica, executa e debuga cada instrução. 
+
+Esta função chama outras funções, como um degrau 
+\begin{DoxyCode}
+279 \{
+280     fetch();
+281     decode();
+282     execute();
+283     debug();
+284 \}
+\end{DoxyCode}

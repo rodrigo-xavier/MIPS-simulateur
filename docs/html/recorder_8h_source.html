@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.14"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Trabalho 2: Código-Fonte de memory/include/recorder.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Trabalho 2
+   &#160;<span id="projectnumber">2.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.8.14 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Localizar');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_267116d250309cbe7bd39c0026ee016a.html">memory</a></li><li class="navelem"><a class="el" href="dir_65e15126d72ed444e057744f23ffe47a.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">recorder.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="recorder_8h.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef RECORDER_H_INCLUDED</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define RECORDER_H_INCLUDED</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="memory_8h.html">memory.h</a>&quot;</span></div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="global_8h.html">global.h</a>&quot;</span></div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keywordtype">void</span> <a class="code" href="recorder_8h.html#a4304f78e7f332c77c92418c0c2f70610">fetch</a>(<span class="keywordtype">void</span>);</div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keywordtype">void</span> <a class="code" href="recorder_8h.html#a34bfe429bf645af9afd5bc1554f5c589">decode</a>(<span class="keywordtype">void</span>);</div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keywordtype">void</span> <a class="code" href="recorder_8h.html#a4fbe3f6f1beeb9904f150f3d65943a1c">execute</a>(<span class="keywordtype">void</span>);</div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keywordtype">void</span> <a class="code" href="recorder_8h.html#a9f1dffc0dde87c0cc5eea9fc77d89b28">step</a>(<span class="keywordtype">void</span>);</div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keywordtype">void</span> <a class="code" href="recorder_8h.html#a05e0ffe612d44e6d7f3a9ae5b9df56a2">run</a>(<span class="keywordtype">void</span>);</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keywordtype">void</span> <a class="code" href="recorder_8h.html#a35a4060a0a098de53a6f1984921892a1">dump_mem_recorder</a>(<span class="keywordtype">int</span>, <span class="keywordtype">int</span>, <span class="keywordtype">char</span>);</div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keywordtype">void</span> <a class="code" href="recorder_8h.html#a2018f3e1248ee31bcecf5ccbb837e408">dump_reg</a>(<span class="keywordtype">char</span>);</div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keywordtype">void</span> <a class="code" href="recorder_8h.html#a19d0bbfdb5f0b372b4d230b601aaebd6">signal_extension</a>(<span class="keywordtype">void</span>);</div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#endif</span></div><div class="ttc" id="memory_8h_html"><div class="ttname"><a href="memory_8h.html">memory.h</a></div></div>
+<div class="ttc" id="recorder_8h_html_a34bfe429bf645af9afd5bc1554f5c589"><div class="ttname"><a href="recorder_8h.html#a34bfe429bf645af9afd5bc1554f5c589">decode</a></div><div class="ttdeci">void decode(void)</div><div class="ttdoc">Função que decodifica uma instrução. </div><div class="ttdef"><b>Definition:</b> recorder.c:18</div></div>
+<div class="ttc" id="global_8h_html"><div class="ttname"><a href="global_8h.html">global.h</a></div></div>
+<div class="ttc" id="recorder_8h_html_a4304f78e7f332c77c92418c0c2f70610"><div class="ttname"><a href="recorder_8h.html#a4304f78e7f332c77c92418c0c2f70610">fetch</a></div><div class="ttdeci">void fetch(void)</div><div class="ttdoc">Registrador. </div><div class="ttdef"><b>Definition:</b> recorder.c:8</div></div>
+<div class="ttc" id="recorder_8h_html_a05e0ffe612d44e6d7f3a9ae5b9df56a2"><div class="ttname"><a href="recorder_8h.html#a05e0ffe612d44e6d7f3a9ae5b9df56a2">run</a></div><div class="ttdeci">void run(void)</div><div class="ttdoc">Função que roda todas as instruções da memória. </div><div class="ttdef"><b>Definition:</b> recorder.c:291</div></div>
+<div class="ttc" id="recorder_8h_html_a19d0bbfdb5f0b372b4d230b601aaebd6"><div class="ttname"><a href="recorder_8h.html#a19d0bbfdb5f0b372b4d230b601aaebd6">signal_extension</a></div><div class="ttdeci">void signal_extension(void)</div><div class="ttdoc">Função que estende o sinal de k16. </div><div class="ttdef"><b>Definition:</b> recorder.c:37</div></div>
+<div class="ttc" id="recorder_8h_html_a9f1dffc0dde87c0cc5eea9fc77d89b28"><div class="ttname"><a href="recorder_8h.html#a9f1dffc0dde87c0cc5eea9fc77d89b28">step</a></div><div class="ttdeci">void step(void)</div><div class="ttdoc">Função que lê, decodifica, executa e debuga cada instrução. </div><div class="ttdef"><b>Definition:</b> recorder.c:278</div></div>
+<div class="ttc" id="recorder_8h_html_a4fbe3f6f1beeb9904f150f3d65943a1c"><div class="ttname"><a href="recorder_8h.html#a4fbe3f6f1beeb9904f150f3d65943a1c">execute</a></div><div class="ttdeci">void execute(void)</div><div class="ttdoc">Função que executa as instruções de opcode e funct. </div><div class="ttdef"><b>Definition:</b> recorder.c:49</div></div>
+<div class="ttc" id="recorder_8h_html_a35a4060a0a098de53a6f1984921892a1"><div class="ttname"><a href="recorder_8h.html#a35a4060a0a098de53a6f1984921892a1">dump_mem_recorder</a></div><div class="ttdeci">void dump_mem_recorder(int, int, char)</div><div class="ttdoc">Função que mostra conteúdo da memória. </div><div class="ttdef"><b>Definition:</b> recorder.c:314</div></div>
+<div class="ttc" id="recorder_8h_html_a2018f3e1248ee31bcecf5ccbb837e408"><div class="ttname"><a href="recorder_8h.html#a2018f3e1248ee31bcecf5ccbb837e408">dump_reg</a></div><div class="ttdeci">void dump_reg(char)</div><div class="ttdoc">Função que mostra o conteúdo dos registradores. </div><div class="ttdef"><b>Definition:</b> recorder.c:350</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.14
+</small></address>
+</body>
+</html>

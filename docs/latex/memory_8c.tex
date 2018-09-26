@@ -1,0 +1,484 @@
+\section{Referência ao ficheiro memory/src/memory.c}
+\label{memory_8c}\index{memory/src/memory.\+c@{memory/src/memory.\+c}}
+{\ttfamily \#include \char`\"{}../include/memory.\+h\char`\"{}}\newline
+\subsection*{Funções}
+\begin{DoxyCompactItemize}
+\item 
+void \textbf{ dump\+\_\+mem} (uint32\+\_\+t address, uint32\+\_\+t size)
+\begin{DoxyCompactList}\small\item\em Função que mostra conteúdo da memória. \end{DoxyCompactList}\item 
+int32\+\_\+t \textbf{ lw} (uint32\+\_\+t address, int16\+\_\+t kte)
+\begin{DoxyCompactList}\small\item\em Função que lê uma palavra de 32 bits. \end{DoxyCompactList}\item 
+int32\+\_\+t \textbf{ lh} (uint32\+\_\+t address, int16\+\_\+t kte)
+\begin{DoxyCompactList}\small\item\em Função que lê meia palavra de 32 bits. \end{DoxyCompactList}\item 
+uint32\+\_\+t \textbf{ lhu} (uint32\+\_\+t address, int16\+\_\+t kte)
+\begin{DoxyCompactList}\small\item\em Função que lê meia palavra de 32 bits sem sinal. \end{DoxyCompactList}\item 
+int32\+\_\+t \textbf{ lb} (uint32\+\_\+t address, int16\+\_\+t kte)
+\begin{DoxyCompactList}\small\item\em Função que lê um byte. \end{DoxyCompactList}\item 
+uint32\+\_\+t \textbf{ lbu} (uint32\+\_\+t address, int16\+\_\+t kte)
+\begin{DoxyCompactList}\small\item\em Função que lê um byte sem sinal. \end{DoxyCompactList}\item 
+void \textbf{ sw} (uint32\+\_\+t address, int16\+\_\+t kte, int32\+\_\+t dado)
+\begin{DoxyCompactList}\small\item\em Função que salva uma palavra de 32 bits na memória. \end{DoxyCompactList}\item 
+void \textbf{ sh} (uint32\+\_\+t address, int16\+\_\+t kte, int16\+\_\+t dado)
+\begin{DoxyCompactList}\small\item\em Função que salva meia palavra de 32 bits na memória. \end{DoxyCompactList}\item 
+void \textbf{ sb} (uint32\+\_\+t address, int16\+\_\+t kte, int8\+\_\+t dado)
+\begin{DoxyCompactList}\small\item\em Função que salva um byte na memória. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Documentação das funções}
+\mbox{\label{memory_8c_ac14dd20635abe93d6caec039961437f2}} 
+\index{memory.\+c@{memory.\+c}!dump\+\_\+mem@{dump\+\_\+mem}}
+\index{dump\+\_\+mem@{dump\+\_\+mem}!memory.\+c@{memory.\+c}}
+\subsubsection{dump\+\_\+mem()}
+{\footnotesize\ttfamily void dump\+\_\+mem (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{address,  }\item[{uint32\+\_\+t}]{size }\end{DoxyParamCaption})}
+
+
+
+Função que mostra conteúdo da memória. 
+
+Memória.
+
+Esta função mostra o conteúdo da memória de um endereço inicial até um endereço de valor inicial somado a uma constante. 
+\begin{DoxyParams}{Parâmetros}
+{\em uint32\+\_\+t} & address, uint32\+\_\+t size \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+void 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+11 \{
+12     \textcolor{keywordtype}{int} i;
+13 
+14     \textcolor{keywordflow}{for} (i = address; i < ((address + size) / 4); i++)
+15     \{
+16         printf(\textcolor{stringliteral}{"mem[%d] = %08x\(\backslash\)n"}, i, mem[i]);
+17     \}
+18 \}
+\end{DoxyCode}
+\mbox{\label{memory_8c_a97ee46152adb11ea26ad11e109bd5a29}} 
+\index{memory.\+c@{memory.\+c}!lb@{lb}}
+\index{lb@{lb}!memory.\+c@{memory.\+c}}
+\subsubsection{lb()}
+{\footnotesize\ttfamily int32\+\_\+t lb (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{address,  }\item[{int16\+\_\+t}]{kte }\end{DoxyParamCaption})}
+
+
+
+Função que lê um byte. 
+
+Esta função retorna o conteúdo da memória de um endereço somado a uma constante. A função utiliza máscaras para conseguir ler o byte Em seguida, os valores lidos são deslocados para o inicio da palavra de retorno. 
+\begin{DoxyParams}{Parâmetros}
+{\em uint32\+\_\+t} & address, int16\+\_\+t kte \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+int32\+\_\+t mem[address] 
+\end{DoxyReturn}
+Aqui o byte lido é deslocado para o inicio de word
+
+Aqui o byte lido é deslocado para o inicio de word
+
+Aqui o byte lido é deslocado para o inicio de word 
+\begin{DoxyCode}
+157 \{
+158     int32\_t mask, word, rest;
+159 
+160     rest = (address + kte) % 4;
+161     address = (address + kte) / 4;
+162 
+163     \textcolor{keywordflow}{if} (rest == 0)
+164     \{
+165         mask = 0x000000ff;
+166         word = mem[address] & mask;
+167         \textcolor{keywordflow}{return} word;
+168     \}
+169     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (rest == 1)
+170     \{
+171         mask = 0x0000ff00;
+172         word = mem[address] & mask;
+173 
+175         word >>= 4 * 2;
+176         \textcolor{keywordflow}{return} word;
+177     \}
+178     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (rest == 2)
+179     \{
+180         mask = 0x00ff0000;
+181         word = mem[address] & mask;
+182 
+184         word >>= 4 * 4;
+185         \textcolor{keywordflow}{return} word;
+186     \}
+187     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (rest == 3)
+188     \{
+189         mask = 0xff000000;
+190         word = mem[address] & mask;
+191 
+193         word >>= 4 * 6;
+194         mask = 0x000000ff;
+195         word &= mask;
+196         \textcolor{keywordflow}{return} word;
+197     \}
+198 
+199     \textcolor{comment}{// ASCII: 45 = E | 52 = R | 52 = R | 4F = O}
+200     \textcolor{keywordflow}{return} 0x4552524F;
+201 \}
+\end{DoxyCode}
+\mbox{\label{memory_8c_a4100995f7030c0852b426373a4f0d068}} 
+\index{memory.\+c@{memory.\+c}!lbu@{lbu}}
+\index{lbu@{lbu}!memory.\+c@{memory.\+c}}
+\subsubsection{lbu()}
+{\footnotesize\ttfamily uint32\+\_\+t lbu (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{address,  }\item[{int16\+\_\+t}]{kte }\end{DoxyParamCaption})}
+
+
+
+Função que lê um byte sem sinal. 
+
+Esta função retorna o conteúdo da memória de um endereço somado a uma constante. A função utiliza máscaras para conseguir ler o byte Em seguida, os valores lidos são deslocados para o inicio da palavra de retorno. O valor retornado pela função, é um valor unsigned, ou seja, sem sinal. 
+\begin{DoxyParams}{Parâmetros}
+{\em uint32\+\_\+t} & address, int16\+\_\+t kte \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+int32\+\_\+t mem[address] 
+\end{DoxyReturn}
+Aqui o byte lido é deslocado para o endereço inicial de word
+
+Aqui o byte lido é deslocado para o endereço inicial de word
+
+Aqui o byte lido é deslocado para o endereço inicial de word 
+\begin{DoxyCode}
+215 \{
+216     int32\_t mask, word, rest;
+217 
+218     rest = (address + kte) % 4;
+219     address = (address + kte) / 4;
+220 
+221     \textcolor{keywordflow}{if} (rest == 0)
+222     \{
+223         mask = 0x000000ff;
+224         word = mem[address] & mask;
+225         \textcolor{keywordflow}{return} word;
+226     \}
+227     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (rest == 1)
+228     \{
+229         mask = 0x0000ff00;
+230         word = mem[address] & mask;
+231 
+233         word >>= 4 * 2;
+234         \textcolor{keywordflow}{return} word;
+235     \}
+236     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (rest == 2)
+237     \{
+238         mask = 0x00ff0000;
+239         word = mem[address] & mask;
+240 
+242         word >>= 4 * 4;
+243         \textcolor{keywordflow}{return} word;
+244     \}
+245     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (rest == 3)
+246     \{
+247         mask = 0xff000000;
+248         word = mem[address] & mask;
+249 
+251         word >>= 4 * 6;
+252         mask = 0x000000ff;
+253         word &= mask;
+254         \textcolor{keywordflow}{return} word;
+255     \}
+256 
+257     \textcolor{comment}{// ASCII: 45 = E | 52 = R | 52 = R | 4F = O}
+258     \textcolor{keywordflow}{return} 0x4552524F;
+259 \}
+\end{DoxyCode}
+\mbox{\label{memory_8c_ac88d72bea8a4bde4942a99746da9e759}} 
+\index{memory.\+c@{memory.\+c}!lh@{lh}}
+\index{lh@{lh}!memory.\+c@{memory.\+c}}
+\subsubsection{lh()}
+{\footnotesize\ttfamily int32\+\_\+t lh (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{address,  }\item[{int16\+\_\+t}]{kte }\end{DoxyParamCaption})}
+
+
+
+Função que lê meia palavra de 32 bits. 
+
+Esta função retorna o conteúdo da memória de um endereço somado a uma constante. Se o endereço estiver desalinhado da memória, ou seja não for divisível por 2, a função mostra uma menssagem de erro e retorna um valor que indica que há um erro. A função utiliza máscaras para conseguir ler meia palavra tanto superior, quanto inferior. Em seguida, os valores lidos são deslocados para o inicio da palavra de retorno. 
+\begin{DoxyParams}{Parâmetros}
+{\em uint32\+\_\+t} & address, int16\+\_\+t kte \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+int32\+\_\+t mem[address] 
+\end{DoxyReturn}
+Aqui a meia palavra lida é deslocada para o endereço inicial de word 
+\begin{DoxyCode}
+59 \{
+60     int32\_t mask, word, rest;
+61 
+62     rest = (address + kte) % 4;
+63 
+64     \textcolor{keywordflow}{if} (((address + kte) % 2) == 0)
+65     \{
+66         address = (address + kte) / 4;
+67 
+68         \textcolor{keywordflow}{if} (rest == 0)
+69         \{
+70             mask = 0x0000ffff;
+71             word = mem[address] & mask;
+72             \textcolor{keywordflow}{return} word;
+73         \}
+74         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (rest == 2)
+75         \{
+76             mask = 0xffff0000;
+77             word = mem[address] & mask;
+78 
+80             word >>= 4 * 4;
+81             mask = 0x0000ffff;
+82             word &= mask;
+83             \textcolor{keywordflow}{return} word;
+84         \}
+85     \}
+86     \textcolor{keywordflow}{else}
+87     \{
+88         printf(\textcolor{stringliteral}{"Non-aligned address\(\backslash\)n"});
+89     \}
+90 
+91     \textcolor{comment}{// ASCII: 45 = E | 52 = R | 52 = R | 4F = O}
+92     \textcolor{keywordflow}{return} 0x4552524F;
+93 \}
+\end{DoxyCode}
+\mbox{\label{memory_8c_a552ff2abf787e5aaf4d34c3b6c769eed}} 
+\index{memory.\+c@{memory.\+c}!lhu@{lhu}}
+\index{lhu@{lhu}!memory.\+c@{memory.\+c}}
+\subsubsection{lhu()}
+{\footnotesize\ttfamily uint32\+\_\+t lhu (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{address,  }\item[{int16\+\_\+t}]{kte }\end{DoxyParamCaption})}
+
+
+
+Função que lê meia palavra de 32 bits sem sinal. 
+
+Esta função retorna o conteúdo da memória de um endereço somado a uma constante. Se o endereço estiver desalinhado da memória, ou seja não for divisível por 2, a função mostra uma menssagem de erro e retorna um valor que indica que há um erro. A função utiliza máscaras para conseguir ler meia palavra tanto superior, quanto inferior. Em seguida, os valores lidos são deslocados para o inicio da palavra de retorno. O valor retornado pela função, é um valor unsigned, ou seja, sem sinal. 
+\begin{DoxyParams}{Parâmetros}
+{\em uint32\+\_\+t} & address, int16\+\_\+t kte \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+int32\+\_\+t mem[address] 
+\end{DoxyReturn}
+Aqui a meia palavra lida é deslocada para o endereço inicial de word 
+\begin{DoxyCode}
+111 \{
+112     uint32\_t mask, word, rest;
+113 
+114     rest = (address + kte) % 4;
+115 
+116     \textcolor{keywordflow}{if} (((address + kte) % 2) == 0)
+117     \{
+118         address = (address + kte) / 4;
+119 
+120         \textcolor{keywordflow}{if} (rest == 0)
+121         \{
+122             mask = 0x0000ffff;
+123             word = mem[address] & mask;
+124             \textcolor{keywordflow}{return} word;
+125         \}
+126         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (rest == 2)
+127         \{
+128             mask = 0xffff0000;
+129             word = mem[address] & mask;
+130 
+132             word >>= 4 * 4;
+133             mask = 0x0000ffff;
+134             word &= mask;
+135             \textcolor{keywordflow}{return} word;
+136         \}
+137     \}
+138     \textcolor{keywordflow}{else}
+139     \{
+140         printf(\textcolor{stringliteral}{"Non-aligned address\(\backslash\)n"});
+141     \}
+142 
+143     \textcolor{comment}{// ASCII: 45 = E | 52 = R | 52 = R | 4F = O}
+144     \textcolor{keywordflow}{return} 0x4552524F;
+145 \}
+\end{DoxyCode}
+\mbox{\label{memory_8c_a5e72ee24dad88a38f4f3a6b3ea9973ed}} 
+\index{memory.\+c@{memory.\+c}!lw@{lw}}
+\index{lw@{lw}!memory.\+c@{memory.\+c}}
+\subsubsection{lw()}
+{\footnotesize\ttfamily int32\+\_\+t lw (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{address,  }\item[{int16\+\_\+t}]{kte }\end{DoxyParamCaption})}
+
+
+
+Função que lê uma palavra de 32 bits. 
+
+Esta função retorna o conteúdo da memória de um endereço somado a uma constante. Se o endereço estiver desalinhado da memória, ou seja não for divisível por 4, a função mostra uma menssagem de erro e retorna um valor que indica que há um erro. 
+\begin{DoxyParams}{Parâmetros}
+{\em uint32\+\_\+t} & address, int16\+\_\+t kte \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+int32\+\_\+t mem[address] 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+30 \{
+31     \textcolor{keywordflow}{if} (((address + kte) % 4) == 0)
+32     \{
+33         address = (address + kte) / 4;
+34         \textcolor{keywordflow}{return} mem[address];
+35     \}
+36     \textcolor{keywordflow}{else}
+37     \{
+38         printf(\textcolor{stringliteral}{"Non-aligned address\(\backslash\)n"});
+39     \}
+40 
+41     \textcolor{comment}{// ASCII: 45 = E | 52 = R | 52 = R | 4F = O}
+42     \textcolor{keywordflow}{return} 0x4552524F;
+43 \}
+\end{DoxyCode}
+\mbox{\label{memory_8c_a2e12d7a7e1b601a6e84cc109450dc570}} 
+\index{memory.\+c@{memory.\+c}!sb@{sb}}
+\index{sb@{sb}!memory.\+c@{memory.\+c}}
+\subsubsection{sb()}
+{\footnotesize\ttfamily void sb (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{address,  }\item[{int16\+\_\+t}]{kte,  }\item[{int8\+\_\+t}]{dado }\end{DoxyParamCaption})}
+
+
+
+Função que salva um byte na memória. 
+
+Esta função recebe um endereço de memória somado a uma constante. E salva o dado recebido na memória utilizando máscaras. 
+\begin{DoxyParams}{Parâmetros}
+{\em uint32\+\_\+t} & address, int16\+\_\+t kte, int32\+\_\+t dado \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+void 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+332 \{
+333     int32\_t content, mask, word, rest;
+334     uint32\_t mask\_dado;
+335 
+336     rest = (address + kte) % 4;
+337 
+338     address = (address + kte) / 4;
+339 
+340     \textcolor{keywordflow}{if} (rest == 0)
+341     \{
+342         mask = 0xffffff00;
+343         mask\_dado = 0x000000ff;
+344         word = mem[address] & mask;
+345         content = dado & mask\_dado;
+346         mem[address] = word | content;
+347     \}
+348     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (rest == 1)
+349     \{
+350         mask = 0xffff00ff;
+351         mask\_dado = 0x0000ff00;
+352         word = mem[address] & mask;
+353         content = (dado << 8) & mask\_dado;
+354         mem[address] = word | content;
+355     \}
+356     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (rest == 2)
+357     \{
+358         mask = 0xff00ffff;
+359         mask\_dado = 0x00ff0000;
+360         word = mem[address] & mask;
+361         content = (dado << 16) & mask\_dado;
+362         mem[address] = word | content;
+363     \}
+364     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (rest == 3)
+365     \{
+366         mask = 0x00ffffff;
+367         mask\_dado = 0xff000000;
+368         word = mem[address] & mask;
+369         content = (dado << 24) & mask\_dado;
+370         mem[address] = word | content;
+371     \}
+372 \}
+\end{DoxyCode}
+\mbox{\label{memory_8c_a871dd50d8d8002722984183a75d59522}} 
+\index{memory.\+c@{memory.\+c}!sh@{sh}}
+\index{sh@{sh}!memory.\+c@{memory.\+c}}
+\subsubsection{sh()}
+{\footnotesize\ttfamily void sh (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{address,  }\item[{int16\+\_\+t}]{kte,  }\item[{int16\+\_\+t}]{dado }\end{DoxyParamCaption})}
+
+
+
+Função que salva meia palavra de 32 bits na memória. 
+
+Esta função recebe um endereço de memória somado a uma constante. Se o endereço estiver desalinhado da memória, ou seja não for divisível por 2, a função mostra uma menssagem de erro. Caso contrário, ela salva o dado recebido na memória nos limites superior ou inferior do endereço utilizando máscaras. 
+\begin{DoxyParams}{Parâmetros}
+{\em uint32\+\_\+t} & address, int16\+\_\+t kte, int32\+\_\+t dado \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+void 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+292 \{
+293     int32\_t content, mask, word, rest;
+294     uint32\_t mask\_dado;
+295 
+296     rest = (address + kte) % 4;
+297 
+298     \textcolor{keywordflow}{if} (((address + kte) % 2) == 0)
+299     \{
+300         address = (address + kte) / 4;
+301 
+302         \textcolor{keywordflow}{if} (rest == 0)
+303         \{
+304             mask = 0xffff0000;
+305             mask\_dado = 0x0000ffff;
+306             word = mem[address] & mask;
+307             content = dado & mask\_dado;
+308             mem[address] = word | content;
+309         \}
+310         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (rest == 2)
+311         \{
+312             mask = 0x0000ffff;
+313             mask\_dado = 0xffff0000;
+314             word = mem[address] & mask;
+315             content = (dado << 16) & mask\_dado;
+316             mem[address] = word | content;
+317         \}
+318     \}
+319     \textcolor{keywordflow}{else}
+320     \{
+321         printf(\textcolor{stringliteral}{"Non-aligned address\(\backslash\)n"});
+322     \}
+323 \}
+\end{DoxyCode}
+\mbox{\label{memory_8c_aa8740c2a949c7394342ef81f7d8bf1c2}} 
+\index{memory.\+c@{memory.\+c}!sw@{sw}}
+\index{sw@{sw}!memory.\+c@{memory.\+c}}
+\subsubsection{sw()}
+{\footnotesize\ttfamily void sw (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{address,  }\item[{int16\+\_\+t}]{kte,  }\item[{int32\+\_\+t}]{dado }\end{DoxyParamCaption})}
+
+
+
+Função que salva uma palavra de 32 bits na memória. 
+
+Esta função recebe um endereço de memória somado a uma constante. Se o endereço estiver desalinhado da memória, ou seja não for divisível por 4, a função mostra uma menssagem de erro. Caso contrário, ela salva o dado recebido na memória 
+\begin{DoxyParams}{Parâmetros}
+{\em uint32\+\_\+t} & address, int16\+\_\+t kte, int32\+\_\+t dado \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+void 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+270 \{
+271     \textcolor{keywordflow}{if} (((address + kte) % 4) == 0)
+272     \{
+273         address = (address + kte) / 4;
+274         mem[address] = dado;
+275     \}
+276     \textcolor{keywordflow}{else}
+277     \{
+278         printf(\textcolor{stringliteral}{"Non-aligned address\(\backslash\)n"});
+279     \}
+280 \}
+\end{DoxyCode}
