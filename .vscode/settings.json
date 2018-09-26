@@ -1,8 +1,0 @@
-{
-    "files.associations": {
-        "memory.h": "c",
-        "recorder.h": "c",
-        "global.h": "c",
-        "init.h": "c"
-    }
-}
