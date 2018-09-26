@@ -7,7 +7,7 @@
 *	include-> Contém os arquivos de cabeçalho do código como (.h)
 *	obj-> Contém os objetos e arquivos gcov gerados pelo makefile
 *	src-> Contém as funções dos arquivos de cabeçalho, a main e o makefile
-*   	lib-> Contém os arquivos binários para rodar o programa
+*	lib-> Contém os arquivos binários para rodar o programa
 
 -----------
 
